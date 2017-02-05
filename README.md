@@ -2,6 +2,8 @@
 ### Description
 DailyLabs is the service presents the list of laboratory work to be carried out. Completed works are marked in green. Service helps the user to estimate the amount of work. 
 The service will be available as a site or application on Android.
+
+![](https://drive.google.com/open?id=0B2nurjmyzhQjNUhGWk5BUFNJRVk) :arrow_right: ![](https://drive.google.com/open?id=0B2nurjmyzhQjUXBtZXZqVzVONk0) 
 ### Team
 Team name is "Casanova-team"
 #### Lineup
