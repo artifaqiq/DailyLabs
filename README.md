@@ -13,6 +13,6 @@ Team name is "Casanova-team"
 * Julia Korotkina ([github](https://github.com/julia-korotkina)) 
 
 ### Scrum
-https://overv.io/artifaqiq/DailyLabs/milestones/2300470/
+[over.io](https://overv.io/artifaqiq/DailyLabs)
 
 BSUIR 2017
