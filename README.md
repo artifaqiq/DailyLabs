@@ -1,6 +1,9 @@
 # DailyLabs
 ### Description
-//TO-DO Скажешь, мол вот нужно автоматизировать листик с лабами (прикрепишь фотку). Это будет сервис, который будет даступен в виде сайта и приложения на андройд.
+DailyLabs is the service presents the list of laboratory work to be carried out. Completed works are marked in green. Service helps the user to estimate the amount of work. 
+The service will be available as a site or application on Android.
+
+
 ### Team
 Team name is "Casanova-team"
 #### Lineup
