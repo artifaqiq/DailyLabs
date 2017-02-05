@@ -7,7 +7,7 @@ Team name is "Casanova-team"
 * Artur Lomako - Scrum Master ([github](https://github.com/artifaqiq)) 
 * Vlad Shurin ([github](https://github.com/VladShurin)) 
 * Viktar Ulyanka  ([github](https://github.com/Aseedr)) 
-* Irina Leibutina (https://github.com/IrinaLeibutina) 
+* Irina Leibutina ([github]https://github.com/IrinaLeibutina) 
 * Viktoria Fomenok ([github](https://github.com/viktoria-fomenok)) 
 * Julia Korotkina ([github](https://github.com/julia-korotkina)) 
 
