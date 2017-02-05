@@ -3,7 +3,7 @@
 DailyLabs is the service presents the list of laboratory work to be carried out. Completed works are marked in green. Service helps the user to estimate the amount of work. 
 The service will be available as a site or application on Android.
 
-![](http://res.cloudinary.com/https-radiant-fjord-73111-herokuapp-com/image/upload/v1486330301/paper_bnjygy.jpg) :arrow_right: ![](http://res.cloudinary.com/https-radiant-fjord-73111-herokuapp-com/image/upload/v1486330301/android_odi8mk.jpg) 
+![](http://res.cloudinary.com/https-radiant-fjord-73111-herokuapp-com/image/upload/c_scale,q_100,w_350/v1486330301/paper_bnjygy.jpg) :arrow_right: ![](http://res.cloudinary.com/https-radiant-fjord-73111-herokuapp-com/image/upload/c_scale,q_100,w_350/v1486330301/android_odi8mk.jpg) 
 ### Team
 Team name is "Casanova-team"
 #### Lineup
