@@ -1,4 +1,5 @@
 # DailyLabs
+[Live](http://dailylabs.herokuapp.com/)
 ### Description
 DailyLabs is the service presents the list of laboratory work to be carried out. Completed works are marked in green. Service helps the user to estimate the amount of work. 
 The service will be available as a site or application on Android.
@@ -15,7 +16,7 @@ Team name is "Casanova-team"
 * Julia Korotkina ([github](https://github.com/julia-korotkina)) 
 
 ### Scrum
-[over.io](https://overv.io/artifaqiq/DailyLabs)
+[over.io](https://overv.io/artifaqiq/DailyLabs) - tool for visualize
 
 BSUIR 2017
 
