@@ -11,9 +11,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class DailylabsApplication {
 
 	public static void main(String[] args) {
-
-		new ClassPathXmlApplicationContext("DailyLabsApplicationContext.xml");
-
 		System.out.println("Hello");
 		SpringApplication.run(DailylabsApplication.class, args);
 	}
