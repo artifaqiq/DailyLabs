@@ -18,5 +18,8 @@ Team name is "Casanova-team"
 ### Scrum
 [over.io](https://overv.io/artifaqiq/DailyLabs) - tool for visualize
 
+### Clients applications
+[Client for iOS](mrkulik/DailyLabs)
+
 BSUIR 2017
 
