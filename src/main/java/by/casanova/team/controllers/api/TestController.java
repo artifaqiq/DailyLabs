@@ -19,27 +19,26 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/test")
 public class TestController {
 
     @RequestMapping("/diary.json")
-    public String getTestDiaryJson(HttpServletResponse response) {
+    public String getTestDiaryJson() {
         Diary testDiary = (Diary) new ClassPathXmlApplicationContext("DailyLabsApplicationContext.xml")
                 .getBean("labsExample");
 
-        response.setHeader("Access-Control-Allow-Origin", "*");
         return new Gson().toJson(testDiary);
     }
 
     @RequestMapping(value = "/diary.json", method = RequestMethod.PUT)
-    public ResponseEntity<?> putTestDiaryJson(@RequestBody String body, HttpServletResponse response) {
+    public ResponseEntity<?> putTestDiaryJson(@RequestBody String body) {
 
         try {
             new Gson().fromJson(body, Diary.class);
         } catch (JsonSyntaxException e) {
             return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
         }
-        response.setHeader("Access-Control-Allow-Origin", "*");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
