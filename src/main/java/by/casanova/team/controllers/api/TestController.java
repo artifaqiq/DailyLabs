@@ -2,14 +2,14 @@ package by.casanova.team.controllers.api;
 
 import by.casanova.team.models.labs.Diary;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.ContextLoader;
 
 /**
@@ -29,9 +29,14 @@ public class TestController {
     }
 
     @RequestMapping(value = "/diary.json", method = RequestMethod.PUT)
-    public String putTestDiaryJson() {
-        //TODO
-        return null;
+    public ResponseEntity<?> putTestDiaryJson(@RequestBody String body) {
+
+        try {
+            new Gson().fromJson(body, Diary.class);
+        } catch (JsonSyntaxException e) {
+            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
