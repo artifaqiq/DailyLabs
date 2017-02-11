@@ -22,11 +22,10 @@ import java.util.List;
 public class LabDao {
 
     @Autowired
-    private EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
 
     public long persist(Lab lab) {
 
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.persist(lab);
         entityManager.flush();
@@ -37,7 +36,6 @@ public class LabDao {
     }
 
     public List<Lab> getAll() {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Object> criteriaQuery = criteriaBuilder.createQuery();
