@@ -1,8 +1,11 @@
 package by.casanova.team.controllers.api;
 
+import by.casanova.team.dao.LabDao;
 import by.casanova.team.models.labs.Diary;
+import by.casanova.team.models.labs.Lab;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -23,6 +26,9 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/api/test")
 public class TestController {
 
+    @Autowired
+    private LabDao dao;
+
     @RequestMapping("/diary.json")
     public String getTestDiaryJson() {
         Diary testDiary = (Diary) new ClassPathXmlApplicationContext("DailyLabsApplicationContext.xml")
@@ -40,6 +46,21 @@ public class TestController {
             return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
         }
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping("/test")
+    public String test() {
+
+        Lab lab = new Lab();
+        lab.setDescription("Description");
+        lab.setPassed(true);
+        lab.setName("Name");
+
+        dao.persist(lab.clone());
+        dao.persist(lab.clone());
+        dao.persist(lab.clone());
+
+        return dao.getAll().toString();
     }
 
 }

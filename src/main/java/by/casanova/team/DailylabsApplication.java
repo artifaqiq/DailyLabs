@@ -1,11 +1,12 @@
 package by.casanova.team;
 
-import by.casanova.team.models.labs.Diary;
+import by.casanova.team.config.persist.JpaConfig;
+import by.casanova.team.dao.LabDao;
+import by.casanova.team.models.labs.Lab;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @SpringBootApplication
 public class DailylabsApplication {
