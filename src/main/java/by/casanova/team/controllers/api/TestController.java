@@ -1,12 +1,12 @@
 package by.casanova.team.controllers.api;
 
+import by.casanova.team.config.TestConfiguration;
 import by.casanova.team.models.labs.Diary;
-import by.casanova.team.models.labs.Lab;
-import by.casanova.team.service.LabService;
+import by.casanova.team.service.DiaryService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,40 +21,35 @@ import org.springframework.web.bind.annotation.*;
 public class TestController {
 
     @Autowired
-    private LabService labService;
+    private DiaryService diaryService;
 
     @RequestMapping("/diary.json")
     public String getTestDiaryJson() {
-        Diary testDiary = (Diary) new ClassPathXmlApplicationContext("DailyLabsApplicationContext.xml")
-                .getBean("labsExample");
-
-        return new Gson().toJson(testDiary);
+        return new Gson().toJson(new TestConfiguration().diaryExample());
     }
 
     @RequestMapping(value = "/diary.json", method = RequestMethod.PUT)
     public ResponseEntity<?> putTestDiaryJson(@RequestBody String body) {
-
+        Diary diary = null;
         try {
-            new Gson().fromJson(body, Diary.class);
+            diary = new Gson().fromJson(body, Diary.class);
         } catch (JsonSyntaxException e) {
             return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
         }
+
+        diaryService.save(diary);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping("/test")
-    public String test() {
+    @RequestMapping("/test/all")
+    public String testAll() {
 
-        Lab lab = new Lab();
-        lab.setDescription("Description");
-        lab.setPassed(true);
-        lab.setName("Name");
+        Diary savedDiary = diaryService.save(new TestConfiguration().diaryExample());
 
-        labService.addLab(lab.clone());
-        labService.addLab(lab.clone());
-        labService.addLab(lab.clone());
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+        return gson.toJson(diaryService.getAll());
 
-        return labService.getAll().toString();
     }
 
 }

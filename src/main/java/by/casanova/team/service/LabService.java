@@ -9,9 +9,9 @@ import java.util.List;
  * Created by artifaqiq on 2/12/17.
  */
 public interface LabService {
-    Lab addLab(Lab lab);
+    Lab save(Lab lab);
     void delete(long id);
-    Lab editBank(Lab lab);
+    Lab update(Lab lab);
     Iterable<Lab> getAll();
 
 }

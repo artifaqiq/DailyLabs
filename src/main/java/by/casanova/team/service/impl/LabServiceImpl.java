@@ -18,7 +18,7 @@ public class LabServiceImpl implements LabService {
     private LabRepository labRepository;
 
     @Override
-    public Lab addLab(Lab lab) {
+    public Lab save(Lab lab) {
         return labRepository.save(lab);
     }
 
@@ -28,7 +28,7 @@ public class LabServiceImpl implements LabService {
     }
 
     @Override
-    public Lab editBank(Lab lab) {
+    public Lab update(Lab lab) {
         return labRepository.save(lab);
     }
 
