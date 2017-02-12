@@ -1,8 +1,8 @@
 package by.casanova.team.controllers.api;
 
-import by.casanova.team.repository.LabRepositoryImpl;
 import by.casanova.team.models.labs.Diary;
 import by.casanova.team.models.labs.Lab;
+import by.casanova.team.service.LabService;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class TestController {
 
     @Autowired
-    private LabRepositoryImpl dao;
+    private LabService labService;
 
     @RequestMapping("/diary.json")
     public String getTestDiaryJson() {
@@ -50,11 +50,11 @@ public class TestController {
         lab.setPassed(true);
         lab.setName("Name");
 
-        dao.persist(lab.clone());
-        dao.persist(lab.clone());
-        dao.persist(lab.clone());
+        labService.addLab(lab.clone());
+        labService.addLab(lab.clone());
+        labService.addLab(lab.clone());
 
-        return dao.getAll().toString();
+        return labService.getAll().toString();
     }
 
 }
