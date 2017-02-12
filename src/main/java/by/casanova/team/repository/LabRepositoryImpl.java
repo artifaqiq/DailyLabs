@@ -1,7 +1,8 @@
-package by.casanova.team.dao;
+package by.casanova.team.repository;
 
 import by.casanova.team.models.labs.Lab;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,7 +11,6 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +18,13 @@ import java.util.List;
  * Created by artifaqiq on 2/11/17.
  */
 @Repository
-@Transactional
-public class LabDao {
+public class LabRepositoryImpl {
+    private EntityManager entityManager;
 
     @Autowired
-    private EntityManager entityManager;
+    public LabRepositoryImpl(EntityManagerFactory factory) {
+        this.entityManager = factory.createEntityManager();
+    }
 
     public long persist(Lab lab) {
 

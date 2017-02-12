@@ -1,7 +1,6 @@
-package by.casanova.team.config.persist;
+package by.casanova.team.config;
 
 import by.casanova.team.DailylabsApplication;
-import by.casanova.team.dao.LabDao;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,12 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -29,8 +24,8 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
-@EnableJpaRepositories(basePackageClasses = DailylabsApplication.class)
-public class JpaConfig  implements TransactionManagementConfigurer{
+@EnableJpaRepositories("by.casanova.team.repository")
+public class JpaConfig {
 
     @Value("${connection.driver_class}")
     private String driver;
@@ -58,8 +53,9 @@ public class JpaConfig  implements TransactionManagementConfigurer{
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean configureEntityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean =
+                new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(configureDataSource());
         entityManagerFactoryBean.setPackagesToScan("by.casanova.team");
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
@@ -72,16 +68,12 @@ public class JpaConfig  implements TransactionManagementConfigurer{
         return entityManagerFactoryBean;
     }
 
-
     @Bean
-    public PlatformTransactionManager annotationDrivenTransactionManager() {
-        return new JpaTransactionManager();
+    public JpaTransactionManager transactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+
+        return transactionManager;
     }
 
-
-    @Bean
-    @Primary
-    public EntityManager getEntityManager() {
-        return configureEntityManagerFactory().getObject().createEntityManager();
-    }
 }

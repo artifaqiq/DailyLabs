@@ -1,4 +1,4 @@
-package by.casanova.team.config.api;
+package by.casanova.team.config;
 
 import by.casanova.team.models.labs.Lab;
 import by.casanova.team.models.labs.Diary;
