@@ -33,3 +33,5 @@ nbdist/
 *.war
 *.ear
 
+src/main/resources/templates/
+mvn*
