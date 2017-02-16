@@ -27,7 +27,7 @@ public class ServicesTests {
 
         Diary newDiary1 = new TestConfiguration().diaryExample();
         Diary newDiary2 = new TestConfiguration().diaryExample();
-I
+
         System.out.println("New Diary #1: " + newDiary1);
         System.out.println("New Diary #2: " + newDiary2);
 
