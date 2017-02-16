@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html ng-app="countryApp">
+<head>
+    <meta charset="utf-8">
+    <title>Крутая прога</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="../library/bootstrap.js"></script>	
+    <link href="../library/bootstrap-theme.css" rel="stylesheet" />
+    <link href="../library/bootstrap.css" rel="stylesheet" />
+	
+	<script src = "../library/jquery-3.1.1.min.map"></script>
+    <script src="JavaScript.js"></script>
+</head>
+<body ng-controller="CountryCtrl">
+	<div class="container">
+		<div class="page-header">
+			<h1>
+				Учет Лабораторных работ
+			</h1>
+			<h3> Пользователь: Vlad Shurin</h3>
+		</div>
+		<div class="panel">
+			<div class="input-group">
+				<input class="form-control" ng-model="SubjectName" />
+				<span class = "input-group-btn">
+					<button class="btn btn-default" ngclick="addNewSubject()"> Добавить </button>
+				</span>
+				</div>
+					<div class="container">           
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Предмет</th>
+									<th>Лабораторные</th>
+									<th>Процентовка</th>
+								</tr>
+    						</thead>
+							<tbody>
+								<tr ng-repeat="subject in diary.subjects">
+									<td>
+										<button type="button" class="btn btn-success" data-toggle = "modal" data-target="#descriptionSubject">
+											{{subject.name}}
+										</button>
+        							</td>
+									<td>
+											<div ng-repeat = "lab in subject.labs" class="btn-group" >
+												<button type = "button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#descriptionLab">
+													{{lab.name}}
+												</button>						
+											</div>	
+        							</td>
+									<td>
+										<div class="progress">
+										  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" 
+											  aria-valuemin="0" aria-valuemax="100" style="width:75%">
+											 75% Complete (success)
+										  </div>
+										</div>
+									</td>
+      							</tr>
+	  						</tbody>
+	  					</table>
+					</div>
+				</div>
+				<div class="modal" id = "descriptionSubject">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-tittle">Описание предмета</h4>
+							</div>
+							<div class="modal-body" ng-repeat="subject in diary.subjects">
+								{{subject.description}}
+							</div>
+							<div class="modal-footer">
+								<button class="btn btn-danger" type="button" data-dismiss="modal">Отмена</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal" id="descriptionLab">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+							 	<h4 class="modal-tittle">Описание Лабораторной</h4>
+							</div>
+							<div class="modal-body" ng-repeat="subject in diary.subjects">
+								<div ng-repeat="lab in subject.labs">
+									{{lab.description}}
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button class="btn btn-danger" type="button" data-dismiss="modal">Отмена</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>
