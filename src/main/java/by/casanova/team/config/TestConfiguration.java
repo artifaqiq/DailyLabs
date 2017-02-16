@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by artifaqiq on 2/8/17.
@@ -20,8 +21,10 @@ public class TestConfiguration {
 
     public Diary diaryExample() {
 
+        String randomDigit = String.valueOf(new Random().nextInt(5));
+
         Lab lab1 = new Lab();
-        lab1.setName("1");
+        lab1.setName(randomDigit);
         lab1.setDescription("");
         lab1.setPassed(true);
 
@@ -46,12 +49,12 @@ public class TestConfiguration {
 
         Subject subject1 = new Subject();
         subject1.setName("ТРиТПО");
-        subject1.setDescription("Очень хороший преподователь");
+        subject1.setDescription(randomDigit);
         subject1.setLabs((ArrayList) labs1.clone());
 
         Subject subject2 = new Subject();
         subject2.setName("СА");
-        subject2.setDescription("");
+        subject2.setDescription(randomDigit);
         subject2.setLabs(((ArrayList) labs2.clone()));
 
         ArrayList<Subject> subjects = new ArrayList<>();

@@ -8,7 +8,9 @@ import by.casanova.team.models.labs.Lab;
  */
 public interface DiaryService {
     Diary save(Diary diary);
+    Diary cascadeSave(Diary diary);
     void delete(long id);
     Diary update(Diary diary);
     Iterable<Diary> getAll();
+    Diary getById(long id);
 }

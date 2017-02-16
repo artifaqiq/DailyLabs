@@ -30,8 +30,14 @@ public class DiaryServiceImpl implements DiaryService{
 
     @Override
     public Diary save(Diary diary) {
+        return diaryRepository.save(diary);
+    }
+
+    @Override
+    public Diary cascadeSave(Diary diary) {
 
         Diary savedDiary = diaryRepository.save(diary);
+
         List<Subject> savedSubjects = new ArrayList<>();
 
         for(Subject subject : diary.getSubjects()) {
@@ -62,5 +68,10 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public Iterable<Diary> getAll() {
         return diaryRepository.findAll();
+    }
+
+    @Override
+    public Diary getById(long id) {
+        return diaryRepository.findOne(id);
     }
 }
