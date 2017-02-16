@@ -50,6 +50,7 @@ public class ServicesTests {
 
         System.out.println("All: " + diaryService.getAll());
 
+        System.out.println("Last modified: " + diaryService.getLastModifiedDiary());
 
     }
 

@@ -13,4 +13,5 @@ public interface DiaryService {
     Diary update(Diary diary);
     Iterable<Diary> getAll();
     Diary getById(long id);
+    Diary getLastModifiedDiary();
 }

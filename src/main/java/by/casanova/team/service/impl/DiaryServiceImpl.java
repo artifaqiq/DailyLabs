@@ -8,6 +8,7 @@ import by.casanova.team.repository.LabRepository;
 import by.casanova.team.repository.SubjectRepository;
 import by.casanova.team.service.DiaryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -73,5 +74,17 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public Diary getById(long id) {
         return diaryRepository.findOne(id);
+    }
+
+    @Override
+    public Diary getLastModifiedDiary() {
+        List<Diary> list = diaryRepository.findLastModifiedDiary();
+
+        if(list.size() != 0) {
+            return list.get(0);
+        } else {
+            return null;
+        }
+
     }
 }
