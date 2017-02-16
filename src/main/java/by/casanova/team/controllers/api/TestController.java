@@ -25,7 +25,9 @@ public class TestController {
 
     @RequestMapping("/diary.json")
     public String getTestDiaryJson() {
-        return new Gson().toJson(new TestConfiguration().diaryExample());
+
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+        return gson.toJson(diaryService.getLastModifiedDiary());
     }
 
     @RequestMapping(value = "/diary.json", method = RequestMethod.PUT)
@@ -37,9 +39,7 @@ public class TestController {
             return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        diaryService.save(diary);
-
-
+        diaryService.cascadeSave(diary);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
