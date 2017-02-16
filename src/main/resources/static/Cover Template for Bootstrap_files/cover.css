@@ -19,6 +19,18 @@ a:hover {
   border: 1px solid #fff;
 }
 
+.btn-link{
+  color: #999;
+}
+
+.btn-link:focus{
+  color: #999;
+  text-decoration: none;
+} 
+
+.btn-link:hover{
+  color: #fff;
+}
 
 /*
  * Base structure
