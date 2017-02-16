@@ -39,13 +39,15 @@ public class TestController {
 
         diaryService.save(diary);
 
+
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping("/test/all")
-    public String testAll() {
 
-        Diary savedDiary = diaryService.save(new TestConfiguration().diaryExample());
+
+    @RequestMapping("/all")
+    public String testAll() {
 
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         return gson.toJson(diaryService.getAll());
