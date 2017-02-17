@@ -15,6 +15,9 @@ Team name is "Casanova-team"
 * Viktoria Fomenok ([github](https://github.com/viktoria-fomenok)) 
 * Julia Korotkina ([github](https://github.com/julia-korotkina)) 
 
+### REST API
+[Swagger](https://app.swaggerhub.com/api/artifaqiq/DailyLabs/1.0.0) - API specification
+
 ### Scrum
 [over.io](https://overv.io/artifaqiq/DailyLabs) - tool for visualize
 
