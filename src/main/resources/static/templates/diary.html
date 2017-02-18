@@ -131,7 +131,11 @@
         </div>
     </div>
 
-    <button ng-click="diaryCtrl.save()" class="btn btn-success">Save</button>
+    <div>
+        <button ng-click="diaryCtrl.save()" class="btn btn-success">Save</button>
+        <div ng-if="diaryCtrl.diaryUpToDate" style="color:green">Already up to date</div>
+        <div ng-if="!diaryCtrl.diaryUpToDate" style="color:red">Diary has changed</div>
+    </div>
 </div>
 
 <div style="margin: 7%">
