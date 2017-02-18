@@ -4,7 +4,7 @@
 
         var diaryService = {
             get: function() {
-                var promise = $http.get('http://localhost:3000/api/test/diary.json').then(function (response) {
+                var promise = $http.get('http://dailylabs.herokuapp.com/api/test/diary.json').then(function (response) {
                     return response.data;
                 });
                 return promise;
@@ -14,7 +14,7 @@
 
                 var request = {
                     method: 'PUT',
-                    url: 'http://localhost:3000/api/test/diary.json',
+                    url: 'http://dailylabs.herokuapp.com/api/test/diary.json',
                     data: angular.toJson(data)
                 }
 
