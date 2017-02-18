@@ -1,49 +1,69 @@
 <div class="container" style="margin-top: 5%">
     <div class="panel">
-        <div class="input-group">
-            <input class="form-control" ng-model="newSubjectName" placeholder="Name new subject"/>
-            <span class = "input-group-btn">
-                <button class="btn btn-default" ng-click="diaryCtrl.addNewSubject(newSubjectName)">Add</button>
-            </span>
-        </div>
         <div class="container">
             <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Subjects</th>
-                    <th>Labs</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
                 <tbody>
                 <tr ng-repeat="subject in diaryCtrl.diary.subjects">
                     <td>
-                        <button type="button" class="btn btn-success" data-toggle = "modal" data-target="#descriptionSubject">
-                            {{subject.name}}
-                        </button>
-                        <button type="button" class="btn btn-danger"
-                                ng-click="diaryCtrl.deleteSubject(subject)">
-                            Remove
-                        </button>
+                        <panel panel-default>
+                            <div class="panel-body">
+                                <div>{{subject.name}}</div>
+                                <div class="dropdown">
+                                    <button class="glyphicon glyphicon-pencil" data-toggle="dropdown"></button>
+
+                                    <div class="dropdown-menu">
+                                        <div style="margin: 3%">
+                                            <div ng-init="name=subject.name" class="form-group" >
+                                                <label for="name">Name:</label>
+                                                <input ng-model="name" type="text" class="form-control" id="name"
+                                                       autofocus required>
+                                            </div>
+                                            <div ng-init="description=subject.description" class="form-group">
+                                                <label for="dscr">Description:</label>
+                                                <textarea ng-model="description" class="form-control" id="dscr"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <button ng-click="diaryCtrl.updateSubject(subject, name, description)"
+                                                        class="btn btn-success" type="submit">Save</button>
+                                                <button ng-click="description=name=''" class="btn btn-default">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown">
+                                    <button class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></button>
+                                    <ul class="dropdown-menu">
+                                        <div class="input-group">
+                                            <button class="btn btn-danger" ng-click="diaryCtrl.deleteSubject(subject)">
+                                                Remove
+                                            </button>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </panel>
                     </td>
                     <td>
                         <div ng-repeat = "lab in subject.labs" class="btn-group" >
                             <button ng-click="diaryCtrl.switchPassed(lab)" type = "button" class="lab-passed-{{lab.passed}}"
                                     title="{{lab.description}}">
-                                {{lab.name}}
+                                <div>
+                                    {{lab.name}}
+                                </div>
                             </button>
                         </div>
                         <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown">+
-                            </button>
-                            <ul class="dropdown-menu">
-                                <div class="input-group">
-                                    <input class="form-control" ng-model="newLabName"/>
-                                    <span class = "input-group-btn">
-					                    <button class="btn btn-default" ng-click="diaryCtrl.addNewLab(subject, newLabName)"> Add </button>
-				                    </span>
+                            <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown">+</button>
+                            <form class="dropdown-menu">
+                                <div class="input-group"  style="margin: 3%">
+                                    <input ng-model="newLabName" class="form-control"/>
+                                    <div class = "input-group-btn">
+                                        <button ng-click="diaryCtrl.addNewLab(subject, newLabName); newLabName=''"
+                                                class="btn btn-success" type="submit"> Add </button>
+                                    </div>
                                 </div>
-                            </ul>
+                            </form>
                         </div>
                     </td>
                     <td>
@@ -55,6 +75,22 @@
                         </div>
                     </td>
                 </tr>
+
+                <tr >
+                    <td class="dropdown">
+                        <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown">+
+                        </button>
+                        <ul class="dropdown-menu">
+                            <div class="input-group">
+                                <input class="form-control" ng-model="newSubjectName"/>
+                                <span class = "input-group-btn">
+                                <button class="btn btn-default" ng-click="diaryCtrl.addNewSubject(newSubjectName)"> Add </button>
+                            </span>
+                            </div>
+                        </ul>
+                    </td>
+                </tr>
+
                 </tbody>
             </table>
         </div>
