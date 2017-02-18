@@ -3,11 +3,22 @@
     .factory('DiaryService', function ($http) {
 
         var diaryService = {
-            async: function() {
-                var promise = $http.get('http://dailylabs.herokuapp.com/api/test/diary.json').then(function (response) {
+            get: function() {
+                var promise = $http.get('http://localhost:3000/api/test/diary.json').then(function (response) {
                     return response.data;
                 });
                 return promise;
+            },
+
+            put: function (data) {
+
+                var request = {
+                    method: 'PUT',
+                    url: 'http://localhost:3000/api/test/diary.json',
+                    data: angular.toJson(data)
+                }
+
+                return $http(request);
             }
         };
         return diaryService;

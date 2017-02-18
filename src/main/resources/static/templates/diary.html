@@ -1,24 +1,18 @@
-<div class="container">
-    <div class="page-header">
-        <h1>
-            Учет Лабораторных работ
-        </h1>
-        <h3> Пользователь: Vlad Shurin</h3>
-    </div>
+<div class="container" style="margin-top: 5%">
     <div class="panel">
         <div class="input-group">
-            <input class="form-control" ng-model="newSubjectName"/>
+            <input class="form-control" ng-model="newSubjectName" placeholder="Name new subject"/>
             <span class = "input-group-btn">
-                <button class="btn btn-default" ng-click="diaryCtrl.addNewSubject(newSubjectName)"> Добавить </button>
+                <button class="btn btn-default" ng-click="diaryCtrl.addNewSubject(newSubjectName)">Add</button>
             </span>
         </div>
         <div class="container">
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Предмет</th>
-                    <th>Лабораторные</th>
-                    <th>Процентовка</th>
+                    <th>Subjects</th>
+                    <th>Labs</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,10 +21,15 @@
                         <button type="button" class="btn btn-success" data-toggle = "modal" data-target="#descriptionSubject">
                             {{subject.name}}
                         </button>
+                        <button type="button" class="btn btn-danger"
+                                ng-click="diaryCtrl.deleteSubject(subject)">
+                            Remove
+                        </button>
                     </td>
                     <td>
                         <div ng-repeat = "lab in subject.labs" class="btn-group" >
-                            <button type = "button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#descriptionLab">
+                            <button ng-click="diaryCtrl.switchPassed(lab)" type = "button" class="lab-passed-{{lab.passed}}"
+                                    title="{{lab.description}}">
                                 {{lab.name}}
                             </button>
                         </div>
@@ -60,40 +59,13 @@
             </table>
         </div>
     </div>
-    <div class="modal" id = "descriptionSubject">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-tittle">Описание предмета</h4>
-                </div>
-                <div class="modal-body" ng-repeat="subject in diaryCtrl.diary.subjects">
-                    {{subject.description}}
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-danger" type="button" data-dismiss="modal">Отмена</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal" id="descriptionLab">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-tittle">Описание Лабораторной</h4>
-                </div>
-                <div class="modal-body" ng-repeat="subject in diary.subjects">
-                    <div ng-repeat="lab in subject.labs">
-                        {{lab.description}}
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-danger" type="button" data-dismiss="modal">Отмена</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <button ng-click="diaryCtrl.save()" class="btn btn-success">Save</button>
 </div>
 
-<div>
-    {{diaryCtrl.getJsonDiary()}}
+<div style="margin: 7%">
+    <h3><strong>Model:</strong></h3>
+    <div class="center-block col-md-6">
+        {{diaryCtrl.getJsonDiary()}}
+    </div>
 </div>

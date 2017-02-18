@@ -1,10 +1,17 @@
-app.controller('DiaryController', ['DiaryService', function (DiaryService) {
+app.controller('DiaryController', ['DiaryService', '$interval', function (DiaryService, $interval) {
     var ctrl = this;
-    ctrl.diary = DiaryService.async().then(function (data) {
+    ctrl.diary = DiaryService.get().then(function (data) {
         ctrl.diary = data;
     });
 
+    $interval(function () {
+        console.log("INTERVAL");
 
+
+
+    }, 1000).then(function () {
+        console.log("THEN");
+    });
 
     ctrl.addNewSubject = function (newSubjectName) {
         //TODO Validation
@@ -23,9 +30,18 @@ app.controller('DiaryController', ['DiaryService', function (DiaryService) {
         //TODO Clear input
     }
 
+    ctrl.deleteSubject = function (deletingSubject) {
+
+        ctrl.diary.subjects = ctrl.diary.subjects.filter(function (subject) {
+            return subject != deletingSubject;
+        })
+
+
+    }
+
+
     ctrl.addNewLab = function (subject, newLabName) {
         //TODO Validation
-
 
         if(newLabName) {
             var newLab = {};
@@ -35,7 +51,7 @@ app.controller('DiaryController', ['DiaryService', function (DiaryService) {
 
             ctrl.diary.subjects.find(function (element, index, array) {
                 if(element == subject) {
-                    element.labs.push(newLab);
+                    element.labs.push(newLab)
                 }
 
             })
@@ -47,10 +63,15 @@ app.controller('DiaryController', ['DiaryService', function (DiaryService) {
 
     }
 
-
+    ctrl.switchPassed = function (lab) {
+        lab.passed = !lab.passed;
+    }
 
     ctrl.save = function () {
-        //TO-DO
+        DiaryService.put(ctrl.diary).then(function (response) {
+            console.log(response);
+
+        })
     }
 
     ctrl.getJsonDiary = function () {
