@@ -7,11 +7,14 @@ app.controller('DiaryController', ['DiaryService', '$interval', function (DiaryS
     $interval(function () {
         console.log("INTERVAL");
 
-
-
     }, 1000).then(function () {
         console.log("THEN");
     });
+
+    ctrl.updateSubject = function(subject, name, description) {
+        subject.name = name;
+        subject.description = description;
+    }
 
     ctrl.addNewSubject = function (newSubjectName) {
         //TODO Validation
@@ -35,10 +38,12 @@ app.controller('DiaryController', ['DiaryService', '$interval', function (DiaryS
         ctrl.diary.subjects = ctrl.diary.subjects.filter(function (subject) {
             return subject != deletingSubject;
         })
-
-
     }
 
+    ctrl.updateLab = function(lab, name, description) {
+        lab.name = name;
+        lab.description = description;
+    }
 
     ctrl.addNewLab = function (subject, newLabName) {
         //TODO Validation
@@ -58,9 +63,13 @@ app.controller('DiaryController', ['DiaryService', '$interval', function (DiaryS
         } else {
             //TODO Show notice
         }
-
         //TODO Clear input
+    }
 
+    ctrl.deleteLab = function (subject, deletingLab) {
+        subject.labs = subject.labs.filter(function (lab) {
+            return lab != deletingLab;
+        })
     }
 
     ctrl.switchPassed = function (lab) {
