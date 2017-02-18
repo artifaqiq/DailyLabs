@@ -2,9 +2,11 @@
 
     .factory('DiaryService', function ($http) {
 
+        var BASE_URL = "http://dailylabs.herokuapp.com";
+
         var diaryService = {
             get: function() {
-                var promise = $http.get('http://localhost:3000/api/test/diary.json').then(function (response) {
+                var promise = $http.get(BASE_URL + "/api/test/diary.json").then(function (response) {
                     return response.data;
                 });
                 return promise;
@@ -14,7 +16,7 @@
 
                 var request = {
                     method: 'PUT',
-                    url: 'http://localhost:3000/api/test/diary.json',
+                    url: (BASE_URL + '/api/test/diary.json'),
                     data: angular.toJson(data)
                 }
 
