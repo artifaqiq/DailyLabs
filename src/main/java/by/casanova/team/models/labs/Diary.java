@@ -30,7 +30,7 @@ public class Diary implements Serializable {
 
     @Expose
     @LastModifiedDate
-    @Column
+    @Column(nullable = false)
     private Date lastModifiedDate = new Date();
 
     @Expose

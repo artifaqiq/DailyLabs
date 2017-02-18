@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 /**
  * Created by artifaqiq on 2/7/17.
  */
@@ -34,7 +36,9 @@ public class TestController {
     public ResponseEntity<?> putTestDiaryJson(@RequestBody String body) {
         Diary diary = null;
         try {
-            diary = new Gson().fromJson(body, Diary.class);
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            diary = gson.fromJson(body, Diary.class);
+            diary.setLastModifiedDate(new Date());
         } catch (JsonSyntaxException e) {
             return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
         }
