@@ -22,7 +22,7 @@ Team name is "Casanova-team"
 [over.io](https://overv.io/artifaqiq/DailyLabs) - tool for visualize
 
 ### Clients applications
-[Client for iOS](https://github.com/mrkulik/DailyLabs)
+[Client for iOS](https://github.com/mrkulik/DailyLabs-ios)
 
 BSUIR 2017
 
