@@ -4,15 +4,15 @@
             <table class="table table-hover">
                 <tbody>
                 <tr ng-repeat="subject in diaryCtrl.diary.subjects">
-                    <td>
+                    <td class = "sub_size">
                         <panel panel-default>
                             <div class="panel-body">
-                                <div>{{subject.name}}</div>
+                                <div class="subName">{{subject.name}}</div>
                                 <div class="dropdown">
                                     <button class="glyphicon glyphicon-pencil" data-toggle="dropdown"></button>
 
                                     <div class="dropdown-menu">
-                                        <div style="margin: 3%">
+                                        <div style="margin: 5%">
                                             <div ng-init="name=subject.name" class="form-group" >
                                                 <label for="name">Name:</label>
                                                 <input ng-model="name" type="text" class="form-control" id="name"
@@ -32,64 +32,59 @@
                                 </div>
 
                                 <div class="dropdown">
-                                    <button class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></button>
-                                    <ul class="dropdown-menu">
-                                        <div class="input-group">
-                                            <button class="btn btn-danger" ng-click="diaryCtrl.deleteSubject(subject)">
-                                                Remove
-                                            </button>
-                                        </div>
-                                    </ul>
+
+                                    <button class="glyphicon glyphicon-remove-circle" ng-click="diaryCtrl.deleteSubject(subject)"
+                                            data-toggle="dropdown"></button>
                                 </div>
                             </div>
                         </panel>
                     </td>
+
                     <td>
                         <div ng-repeat = "lab in subject.labs" class="btn-group" >
-                            <button ng-click="diaryCtrl.switchPassed(lab)" type = "button" class="lab-passed-{{lab.passed}}"
+
+
+
+                            <div class="dropdown">
+                                <button class="glyphicon glyphicon-pencil" data-toggle="dropdown"></button>
+
+                                <div class="dropdown-menu">
+                                    <div style="margin: 3%">
+                                        <div ng-init="newLabName=lab.name" class="form-group" >
+                                            <label for="lab-name">Name:</label>
+                                            <input ng-model="newLabName" type="text" class="form-control" id="lab-name"
+                                                   autofocus required>
+                                        </div>
+                                        <div ng-init="newLabDescription=lab.description" class="form-group">
+                                            <label for="lab-dscr">Description:</label>
+                                            <textarea ng-model="newLabDescription" class="form-control" id="lab-dscr"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <button ng-click="diaryCtrl.updateLab(lab, newLabName, newLabDescription)"
+                                                    class="btn btn-success" type="submit">Save</button>
+                                            <button ng-click="newLabDescription=newLabName=''"
+                                                    class="btn btn-default">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dropdown">
+                                <button class="glyphicon glyphicon glyphicon-remove-circle" data-toggle="dropdown"
+                                        ng-click="diaryCtrl.deleteLab(subject, lab)"></button>
+
+                            </div>
+
+                            <button ng-click="diaryCtrl.switchPassed(lab)" type = "button" class="lab-passed-{{lab.passed}} labName"
                                     title="{{lab.description}}">
                                 {{lab.name}}
                             </button>
                             <div>
 
-                                <div class="dropdown">
-                                    <button class="glyphicon glyphicon-pencil" data-toggle="dropdown"></button>
-
-                                    <div class="dropdown-menu">
-                                        <div style="margin: 3%">
-                                            <div ng-init="newLabName=lab.name" class="form-group" >
-                                                <label for="lab-name">Name:</label>
-                                                <input ng-model="newLabName" type="text" class="form-control" id="lab-name"
-                                                       autofocus required>
-                                            </div>
-                                            <div ng-init="newLabDescription=lab.description" class="form-group">
-                                                <label for="lab-dscr">Description:</label>
-                                                <textarea ng-model="newLabDescription" class="form-control" id="lab-dscr"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <button ng-click="diaryCtrl.updateLab(lab, newLabName, newLabDescription)"
-                                                        class="btn btn-success" type="submit">Save</button>
-                                                <button ng-click="newLabDescription=newLabName=''"
-                                                        class="btn btn-default">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="dropdown">
-                                    <button class="glyphicon glyphicon-option-vertical" data-toggle="dropdown"></button>
-                                    <ul class="dropdown-menu">
-                                        <div class="input-group">
-                                            <button class="btn btn-danger" ng-click="diaryCtrl.deleteLab(subject, lab)">
-                                                Remove
-                                            </button>
-                                        </div>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                         <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown">+</button>
+                            <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown">Add new lab</button>
                             <form class="dropdown-menu">
                                 <div class="input-group"  style="margin: 3%">
                                     <input ng-model="newLabName" class="form-control"/>
@@ -103,7 +98,7 @@
                     </td>
                     <td>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                            <div class="progress-bar progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="30"
                                  aria-valuemin="0" aria-valuemax="100" style="width:{{diaryCtrl.getPercentPasssedLabs(subject.labs)}}%">
                                 {{diaryCtrl.getPercentPasssedLabs(subject.labs)}}
                             </div>
@@ -113,7 +108,8 @@
 
                 <tr >
                     <td class="dropdown">
-                        <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown">+
+
+                        <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown">Add new subject
                         </button>
                         <ul class="dropdown-menu">
                             <div class="input-group">
