@@ -1,14 +1,18 @@
 package by.casanova.team.models.labs;
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,15 +27,14 @@ public class Diary implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @CreatedDate
-    @NotNull
     @Column(nullable = false, updatable = false)
-    private Date createdDate = new Date();
+    @CreatedDate
+    private ZonedDateTime createdDate = ZonedDateTime.now(ZoneOffset.UTC);
 
     @Expose
     @LastModifiedDate
     @Column(nullable = false)
-    private Date lastModifiedDate = new Date();
+    private ZonedDateTime lastModifiedDate = ZonedDateTime.now(ZoneOffset.UTC);
 
     @Expose
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "diary")
@@ -59,19 +62,19 @@ public class Diary implements Serializable {
         this.id = id;
     }
 
-    public Date getCreatedDate() {
+    public ZonedDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(ZonedDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
-    public Date getLastModifiedDate() {
+    public ZonedDateTime getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
