@@ -7,3 +7,54 @@
     //TODO;
     color: red;
 }
+
+body{
+    background: black;
+}
+
+td:nth-child(1){
+    border-right: 1px solid gray;
+}
+.subName{
+    display: inline-block;
+}
+
+.btn-group .glyphicon-remove-circle{
+    display: inline-block;
+    float: left;
+}
+
+.btn-group .glyphicon-pencil{
+    display: inline-block;
+    float: left;
+}
+
+.labName{
+    width: 50px;
+    height: 50px;
+}
+
+.panel-body .glyphicon-remove-circle{
+    display: inline-block;
+    left: 130px;
+    float: left;
+    bottom: 20px;
+
+}
+
+.panel-body .glyphicon-pencil{
+    display: inline-block;
+    left: 125px;
+    float: left;
+    bottom: 20px;
+
+}
+
+h3, .col-md-6{
+    display: none;
+}
+
+/*.subNname{
+    text-align: center;
+    vertical-align: middle;
+}*/
