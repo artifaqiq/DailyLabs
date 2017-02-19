@@ -7,9 +7,23 @@
     //TODO;
     color: red;
 }
+.progress-bar{
 
+}
 body{
     background: black;
+}
+.subName{
+  font-family: Broadway;
+    font-weight: bold;
+    font-size: 20px;
+
+}
+.table{
+
+}
+.sub_size{
+    width: 230px;
 }
 
 td:nth-child(1){
@@ -24,19 +38,26 @@ td:nth-child(1){
     float: left;
 }
 
+.btn-group{
+    margin: 5px;
+}
+
 .btn-group .glyphicon-pencil{
     display: inline-block;
     float: left;
 }
 
-.labName{
-    width: 50px;
-    height: 50px;
+button.labName{
+    width: 60px;
+    height: 30px;
+    overflow-x:hidden;
 }
-
-.panel-body .glyphicon-remove-circle{
+.panel-body{
+    margin: 5px;
+}
+.panel-body .glyphicon-remove-circle {
     display: inline-block;
-    left: 130px;
+    left: 115px;
     float: left;
     bottom: 20px;
 
@@ -44,7 +65,7 @@ td:nth-child(1){
 
 .panel-body .glyphicon-pencil{
     display: inline-block;
-    left: 125px;
+    left: 110px;
     float: left;
     bottom: 20px;
 
@@ -54,7 +75,4 @@ h3, .col-md-6{
     display: none;
 }
 
-/*.subNname{
-    text-align: center;
-    vertical-align: middle;
-}*/
+
