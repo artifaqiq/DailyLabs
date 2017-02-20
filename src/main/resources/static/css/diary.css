@@ -14,13 +14,13 @@ body{
     background: black;
 }
 .subName{
-  font-family: Broadway;
+  font-family: "Arial";
     font-weight: bold;
     font-size: 20px;
 
 }
 .table{
-
+width: 1100px;
 }
 .sub_size{
     width: 230px;

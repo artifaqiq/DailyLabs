@@ -1,32 +1,33 @@
 body{
-    background: url("../image/background.jpg") no-repeat scroll;
+    background: url("../image/background_mac.jpg") no-repeat scroll;
     -moz-background-size: 100%;
     -webkit-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
 }
 
-h1 {
-    font-size: 500%;
+.main-title {
+    font-size: 300%;
     font-family: Arial;
-    color: black;
-    text-align: center;
     font-style: italic;
     vertical-align: bottom;
+    color: black;
 }
 
-.copy {
-    text-align: center;
+.copy{
+    position: fixed;
+    left: 0; bottom: 0;
+    padding: 10px;
+    color: white;
+    width: 100%;
 }
-
-.main-menu{
-    list-style: none;
-    padding: 0;
-    margin: 0;
+ul {
+    list-style: none; /*убираем маркеры списка*/
+    margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
+    padding-left: 0; /*убираем левый отступ, равный 40px*/
 }
-.main-menu li{
-    display: inline-block;
-    background: white;
+a {
+    text-decoration: none; /*убираем подчеркивание текста ссылок*/
 }
 
 .main-menu a
@@ -56,4 +57,51 @@ button.new {
 
 button.new:hover{
     background: #f5f5f5;
+
 }
+
+.registration{
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    margin: 110px 0px 0px 850px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+ul {
+    list-style: none;
+    margin: 0 auto;
+    display: flex;
+}
+a {
+    text-decoration: none;
+    font-family: 'Lora', serif;
+    transition: .5s linear;
+}
+
+i {
+    margin-right: 10px;
+}
+nav {
+    display: block;
+    width: 100%;
+    margin: 0 auto 30px;
+}
+
+.menu ul {
+    display: -webkit-flex;
+    display: flex;
+    background: rgba(255, 255, 255, 0.5);
+    padding-left: 85%;
+
+}
+
+.menu a {
+    padding: 1em;
+    display: block;
+    color: black;
+    border-right: 1px solid white;
+    background: rgba(255, 255, 255, 0.5);
+}
+.menu a:hover {background: lightgreen}

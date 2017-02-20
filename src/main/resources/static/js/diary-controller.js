@@ -92,6 +92,7 @@ app.controller('DiaryController', ['DiaryService', '$interval', function (DiaryS
 
     ctrl.save = function () {
         DiaryService.put(ctrl.diary).then(function (response) {
+
             if(response.status == 200) {
                 ctrl.diaryUpToDate = true;
             }
