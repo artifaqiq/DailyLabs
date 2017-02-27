@@ -23,6 +23,7 @@ Team name is "Casanova-team"
 
 ### Clients applications
 [Client for iOS](https://github.com/mrkulik/DailyLabs-ios)
+[Client for Android](https://github.com/Aseedr/DailyLabs)
 
 BSUIR 2017
 
