@@ -8,7 +8,7 @@
     background: #d33
 }
 .progress-bar{
-
+    font-weight: bold;
 }
 body{
     background: black;
@@ -74,6 +74,19 @@ button.labName{
     float: left;
     bottom: 20px;
 
+}
+
+.glyphicon-plus {
+    margin-left:7px;
+    width: 40px;
+    height: 30px;
+}
+
+h1 {
+    text-align: center;
+    padding: 10px;
+    font-family: "Summit";
+    font-weight: bold;
 }
 
 h3, .col-md-6{
