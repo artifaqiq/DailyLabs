@@ -4,20 +4,55 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="../css/main-page.css">
+    <link href="../bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap-social.css" />
 </head>
 <body>
-<ul class = "main-menu">
-    <li> <a href="#input">Sing in</a></li>
-    <li> <a href="#reg">Sign up</a></li>
-</ul>
-<h1>DailyLabs</h1>
-<p class = "copy">© Casanova-team 2017</p>
-<form action="http://localhost:63342/dailylabs/static/index.html?_ijt=deq84e7paopvb9cfdvej5ull6f#/">
-    <p><button class="new" >Add</button></p>
+
+<nav class="menu">
+    <ul>
+
+        <li> <a href="#input">Sing in</a></li>
+        <li> <a href="#reg">Sign up</a>
+    </ul>
+</nav>
+
+
+<!--<h1 class = "main-title">DailyLabs</h1>-->
+<form class = "registration" method="post">
+    <label></label>
+    <input type="text" name="username" id="username-field" placeholder="Pick a username">
+    <br><br>
+    <label for="login-field"></label>
+    <input type="text" name="login" id="login-field" placeholder="Your email address">
+    <br><br>
+    <label for="password-field"></label>
+    <input type="password" name="password" id="password-field" placeholder="Create a password"><br><br>
+
+    <button type="button" class="btn btn-success">Sing Up</button>
+
+<br><br>
+    <a class="btn btn-social-icon btn-lg btn-google">
+        <span class="fa fa-google"></span>
+    </a>
+
+    <a class="btn btn-social-icon btn-lg btn-facebook">
+        <span class="fa fa-facebook"></span>
+    </a>
+
+    <a class="btn btn-social-icon btn-lg btn-vk">
+        <span class="fa fa-vk"></span>
+    </a>
 </form>
 
 <!--<p>Get test diary: <a href="/api/test/diary.json">link</a></p>
 <p>Send test Json-formatted diary to /api/test/diary.json in payload PUT reques to check your Json syntax</p>-->
 
+<!--<form action="http://localhost:63342/dailylabs/static/index.html?_ijt=deq84e7paopvb9cfdvej5ull6f#/">
+    <p><button class="new" >Add</button></p>
+</form>-->
+
+<p class = "copy">© Casanova-team 2017</p>
 </body>
 </html>
