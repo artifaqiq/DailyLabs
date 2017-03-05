@@ -8,20 +8,21 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by artifaqiq on 3/5/17.
  */
-public class JwtGenerator {
+public class JwtUtils {
     private static final String JWT_SECRET = "12345678";
 
-    public static JWT createJwt(long id, String username, long jwtId) {
+    public static String createToken(String username, long jwtId) {
 
-        String token;
+        String token = null;
         try {
             token = JWT.create()
-                    .withClaim("user)id", String.valueOf(id))
-                    .withSubject(username)
+                    .withClaim("username", username)
                     .withJWTId(String.valueOf(jwtId))
                     .sign(Algorithm.HMAC256(JWT_SECRET));
-        } catch (UnsupportedEncodingException) {}
+        } catch (UnsupportedEncodingException exception) {}
 
-        
+        return token;
     }
+
+
 }

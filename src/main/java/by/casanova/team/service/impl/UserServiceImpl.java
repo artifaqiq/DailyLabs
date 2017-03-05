@@ -25,8 +25,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User save(User user) {
-        user.setJwtToken(JwtUtils.createToken(user.getId(), user.getUsername(),
-                new Random().nextLong()));
+        user.setJwtToken(JwtUtils.createToken(user.getUsername(), new Random().nextLong()));
         return userRepository.save(user);
     }
 

@@ -123,7 +123,6 @@ public class User {
         this.roles = roles;
     }
 
-
     @Override
     public String toString() {
         return "User{" +
@@ -134,6 +133,7 @@ public class User {
                 ", roles=" + roles +
                 ", createdDate=" + createdDate +
                 ", lastModifiedDate=" + lastModifiedDate +
+                ", jwtToken='" + jwtToken + '\'' +
                 '}';
     }
 }

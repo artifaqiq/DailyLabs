@@ -2,8 +2,8 @@
 
     .factory('DiaryService', function ($http) {
 
-        var BASE_URL = "http://dailylabs.herokuapp.com";
-        // var BASE_URL = "http://localhost:3000";
+        // var BASE_URL = "http://dailylabs.herokuapp.com";
+        var BASE_URL = "http://localhost:3000";
 
         var diaryService = {
             get: function() {

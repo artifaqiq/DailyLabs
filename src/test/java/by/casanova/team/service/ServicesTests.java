@@ -3,6 +3,7 @@ package by.casanova.team.service;
 import by.casanova.team.config.TestConfiguration;
 import by.casanova.team.models.labs.Diary;
 import by.casanova.team.models.labs.Subject;
+import by.casanova.team.models.user.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,32 @@ public class ServicesTests {
 
         System.out.println("Last modified: " + diaryService.getLastModifiedDiary());
 
+    }
+
+    @Autowired
+    private UserService userService;
+
+    @Test
+    public void userServiceTest() {
+        User newUser1 = new User();
+        newUser1.setUsername("USERNAME");
+        newUser1.setPassword("PASSWORD");
+        newUser1.setEnabled(true);
+        newUser1 = userService.save(newUser1);
+        System.out.println("newUser = " + newUser1);
+
+        System.out.println(userService.getById(newUser1.getId()));
+
+        User newUser2 = new User();
+        newUser2.setUsername("USERNAME");
+        newUser2.setPassword("PASSWORD");
+        newUser2.setEnabled(true);
+        if(!userService.exists(newUser2.getUsername())) {
+            newUser2 = userService.save(newUser2);
+        }
+        System.out.println("newUser = " + newUser2);
+
+        System.out.println(userService.getById(newUser2.getId()));
     }
 
 }
