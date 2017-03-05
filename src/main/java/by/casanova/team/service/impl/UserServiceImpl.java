@@ -3,7 +3,6 @@ package by.casanova.team.service.impl;
 import by.casanova.team.models.labs.Diary;
 import by.casanova.team.models.labs.Subject;
 import by.casanova.team.models.user.User;
-import by.casanova.team.repository.DiaryRepository;
 import by.casanova.team.repository.user.UserRepository;
 import by.casanova.team.service.DiaryService;
 import by.casanova.team.service.UserService;
@@ -55,6 +54,16 @@ public class UserServiceImpl implements UserService{
         } else {
             return user;
         }
+    }
+
+    @Override
+    public User getByToken(String token) {
+        return userRepository.findByToken(token);
+    }
+
+    @Override
+    public User update(User user) {
+        return userRepository.save(user);
     }
 
 }
