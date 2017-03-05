@@ -1,4 +1,4 @@
-package by.casanova.team.controllers.api.auth;
+package by.casanova.team.controllers.api;
 
 import by.casanova.team.json.user.LoginUserModel;
 import by.casanova.team.json.user.RegisteringUserModel;

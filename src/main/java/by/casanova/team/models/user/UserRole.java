@@ -1,6 +1,7 @@
 package by.casanova.team.models.user;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by artifaqiq on 3/5/17.
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "USER_ROLES", uniqueConstraints = @UniqueConstraint(
         columnNames = { "role", "user_id" }))
-public class UserRole{
+public class UserRole implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

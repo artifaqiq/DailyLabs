@@ -1,5 +1,6 @@
 package by.casanova.team.models.labs;
 
+import by.casanova.team.models.user.User;
 import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
@@ -27,6 +28,13 @@ public class Diary implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    private User user;
+
+    @Expose
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "diary")
+    private List<Subject> subjects;
+
     @Column(nullable = false, updatable = false)
     @CreatedDate
     private ZonedDateTime createdDate = ZonedDateTime.now(ZoneOffset.UTC);
@@ -36,9 +44,6 @@ public class Diary implements Serializable {
     @Column(nullable = false)
     private ZonedDateTime lastModifiedDate = ZonedDateTime.now(ZoneOffset.UTC);
 
-    @Expose
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "diary")
-    private List<Subject> subjects;
 
     public Diary() { }
 
@@ -52,6 +57,14 @@ public class Diary implements Serializable {
 
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getId() {
@@ -82,9 +95,10 @@ public class Diary implements Serializable {
     public String toString() {
         return "Diary{" +
                 "id=" + id +
+                ", user=" + user +
+                ", subjects=" + subjects +
                 ", createdDate=" + createdDate +
                 ", lastModifiedDate=" + lastModifiedDate +
-                ", subjects=" + subjects +
                 '}';
     }
 

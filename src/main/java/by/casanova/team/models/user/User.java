@@ -1,10 +1,12 @@
 package by.casanova.team.models.user;
 
+import by.casanova.team.models.labs.Diary;
 import com.google.gson.annotations.Expose;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
@@ -16,7 +18,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
-public class User {
+public class User implements Serializable{
 
     @Expose
     @Id
@@ -40,6 +42,11 @@ public class User {
     private Set<UserRole> roles = new HashSet<UserRole>(0);
 
     @Expose
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "diary_id")
+    private Diary diary;
+
+    @Expose
     @Column(nullable = false, updatable = false)
     @CreatedDate
     private ZonedDateTime createdDate = ZonedDateTime.now(ZoneOffset.UTC);
@@ -54,16 +61,6 @@ public class User {
 
     public User() {}
 
-    public User(String username, String password, boolean enabled, Set<UserRole> roles, String jwtToken) {
-        this.username = username;
-        this.password = password;
-        this.enabled = enabled;
-        this.roles = roles;
-        this.createdDate = createdDate;
-        this.lastModifiedDate = lastModifiedDate;
-        this.jwtToken = jwtToken;
-    }
-
     public ZonedDateTime getCreatedDate() {
         return createdDate;
     }
@@ -76,12 +73,17 @@ public class User {
         return jwtToken;
     }
 
-
     public void setJwtToken(String jwtToken) {
         this.jwtToken = jwtToken;
     }
 
+    public Diary getDiary() {
+        return diary;
+    }
 
+    public void setDiary(Diary diary) {
+        this.diary = diary;
+    }
 
     public long getId() {
         return id;
