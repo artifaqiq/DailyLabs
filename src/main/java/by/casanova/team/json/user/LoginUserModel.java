@@ -1,11 +1,15 @@
 package by.casanova.team.json.user;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Created by artifaqiq on 3/5/17.
  */
 public class LoginUserModel {
+    @Expose
     private String username;
 
+    @Expose
     private String password;
 
     public LoginUserModel() {}

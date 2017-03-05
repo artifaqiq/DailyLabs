@@ -1,9 +1,15 @@
-app.controller('DiaryController', ['DiaryService', '$interval', function (DiaryService, $interval) {
-    var ctrl = this;
+app.controller('DiaryController', ['DiaryService', '$interval', '$location', function (DiaryService, $interval, $location) {
+    var self = this;
 
-    ctrl.diary = DiaryService.get().then(function (data) {
-        ctrl.diary = data;
-        ctrl.diaryUpToDate = true;
+    if(!getCookie('jwt_token')) {
+        $location.path('/register')
+    }
+
+    self.diary = DiaryService.get().then(function (data) {
+        self.diary = data;
+        self.diaryUpToDate = true;
+    }, function (response) {
+        $location.path('/login')
     });
 
     $interval(function () {
@@ -13,13 +19,13 @@ app.controller('DiaryController', ['DiaryService', '$interval', function (DiaryS
         console.log("THEN");
     });
 
-    ctrl.updateSubject = function(subject, name, description) {
+    self.updateSubject = function(subject, name, description) {
         subject.name = name;
         subject.description = description;
-        ctrl.diaryUpToDate = false;
+        self.diaryUpToDate = false;
     }
 
-    ctrl.addNewSubject = function (newSubjectName) {
+    self.addNewSubject = function (newSubjectName) {
         //TODO Validation
 
         if(newSubjectName) {
@@ -28,34 +34,34 @@ app.controller('DiaryController', ['DiaryService', '$interval', function (DiaryS
             newSubject.description = "";
             newSubject.labs = [];
 
-            ctrl.diary.subjects.push(newSubject);
-            ctrl.diaryUpToDate = false;
+            self.diary.subjects.push(newSubject);
+            self.diaryUpToDate = false;
         } else {
             //TODO Show notice
         }
     }
 
-    ctrl.deleteSubject = function (deletingSubject) {
+    self.deleteSubject = function (deletingSubject) {
 
-        ctrl.diary.subjects = ctrl.diary.subjects.filter(function (subject) {
+        self.diary.subjects = self.diary.subjects.filter(function (subject) {
             return subject != deletingSubject;
         })
-        ctrl.diaryUpToDate = false;
+        self.diaryUpToDate = false;
     }
 
-    ctrl.updateLab = function(lab, name, description) {
+    self.updateLab = function(lab, name, description) {
         //TODO Validation
 
         if(name) {
             lab.name = name;
             lab.description = description;
-            ctrl.diaryUpToDate = false;
+            self.diaryUpToDate = false;
         } else {
             //TODO Show notice
         }
     }
 
-    ctrl.addNewLab = function (subject, newLabName) {
+    self.addNewLab = function (subject, newLabName) {
         //TODO Validation
 
         if(newLabName) {
@@ -64,46 +70,46 @@ app.controller('DiaryController', ['DiaryService', '$interval', function (DiaryS
             newLab.description = "";
             newLab.passed = false;
 
-            ctrl.diary.subjects.find(function (element, index, array) {
+            self.diary.subjects.find(function (element, index, array) {
                 if(element == subject) {
                     element.labs.push(newLab)
                 }
             })
 
-            ctrl.diaryUpToDate = false;
+            self.diaryUpToDate = false;
         } else {
             //TODO Show notice
         }
     }
 
-    ctrl.deleteLab = function (subject, deletingLab) {
+    self.deleteLab = function (subject, deletingLab) {
         subject.labs = subject.labs.filter(function (lab) {
             return lab != deletingLab;
         })
 
-        ctrl.diaryUpToDate = false;
+        self.diaryUpToDate = false;
     }
 
-    ctrl.switchPassed = function (lab) {
+    self.switchPassed = function (lab) {
         lab.passed = !lab.passed;
 
-        ctrl.diaryUpToDate = false;
+        self.diaryUpToDate = false;
     }
 
-    ctrl.save = function () {
-        DiaryService.put(ctrl.diary).then(function (response) {
+    self.save = function () {
+        DiaryService.put(self.diary).then(function (response) {
             if(response.status == 200) {
-                ctrl.diaryUpToDate = true;
+                self.diaryUpToDate = true;
             }
 
         })
     }
 
-    ctrl.getJsonDiary = function () {
-        return angular.toJson(ctrl.diary)
+    self.getJsonDiary = function () {
+        return angular.toJson(self.diary)
     }
 
-    ctrl.getPercentPasssedLabs = function (labs) {
+    self.getPercentPasssedLabs = function (labs) {
         if(labs.length == 0) return 0;
 
         var countPassedLabs = labs.filter(function (lab) {

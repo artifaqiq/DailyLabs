@@ -19,4 +19,6 @@ public interface UserRepository extends CrudRepository<User, Long>
 
     @Query("select u from User u where u.jwtToken = ?1")
     public User findByToken(String token);
+
+
 }

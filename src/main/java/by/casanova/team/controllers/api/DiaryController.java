@@ -35,7 +35,7 @@ public class DiaryController {
     @RequestMapping("/diary")
     public ResponseEntity<?> getDiaryJson(@RequestHeader(value = "Authorization") String authorization) {
 
-        String token = authorization.split(" ")[1];
+        String token = authorization;
         User user = userService.getByToken(token);
 
         if (user == null) {
@@ -54,7 +54,7 @@ public class DiaryController {
     public ResponseEntity<?> updateDiary(@RequestBody String body,
                                          @RequestHeader(value = "Authorization") String authorization) {
 
-        String token = authorization.split(" ")[1];
+        String token = authorization;
         User user = userService.getByToken(token);
 
         if (user == null) {

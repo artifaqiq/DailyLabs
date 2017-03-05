@@ -6,23 +6,23 @@ import org.springframework.http.HttpStatus;
 /**
  * Created by artifaqiq on 3/5/17.
  */
-public class RegisterResponseOk {
+public class AuthResponseOk {
     @Expose
     private String token;
 
     @Expose
     private HttpStatus status;
 
-    public RegisterResponseOk() { }
+    public AuthResponseOk() { }
 
-    public RegisterResponseOk(String token, HttpStatus status) {
+    public AuthResponseOk(String token, HttpStatus status) {
         this.token = token;
         this.status = status;
     }
 
     @Override
     public String toString() {
-        return "RegisterResponseOk{" +
+        return "AuthResponseOk{" +
                 "token='" + token + '\'' +
                 ", status='" + status + '\'' +
                 '}';

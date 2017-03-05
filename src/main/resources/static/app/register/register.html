@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
 
-</body>
-</html>
+<div class="col-md-3">
+    <form>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input ng-model="username" id="email" type="text" class="form-control" name="email" placeholder="Username">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input ng-model="password" id="password" type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input ng-model="password_confirm" id="password_confirm" type="password" class="form-control" name="password_confirm"
+                   placeholder="Confirm password">
+        </div>
+        <div class="form-control">
+            {{regCtrl.message}}
+        </div>
+        <button ng-click="regCtrl.register(username, password, password_confirm)" type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+</div>

@@ -4,6 +4,7 @@ import by.casanova.team.config.TestConfiguration;
 import by.casanova.team.models.labs.Diary;
 import by.casanova.team.models.labs.Subject;
 import by.casanova.team.models.user.User;
+import by.casanova.team.repository.DiaryRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ import java.util.List;
 public class ServicesTests {
     @Autowired
     private DiaryService diaryService;
+
+    @Autowired
+    DiaryRepository diaryRepository;
 
     @Test
     public void diaryServiceTest() {
@@ -52,6 +56,16 @@ public class ServicesTests {
         System.out.println("All: " + diaryService.getAll());
 
         System.out.println("Last modified: " + diaryService.getLastModifiedDiary());
+
+        User newUser = new User();
+        newUser.setUsername("USERNAME_XXX");
+        newUser.setPassword("PASSWORD");
+        newUser.setEnabled(true);
+
+        Diary newDiary3 = new TestConfiguration().diaryExample();
+        diaryService.cascadeSave(newDiary3);
+        newUser.setDiary(newDiary3);
+        newUser = userService.save(newUser);
 
     }
 

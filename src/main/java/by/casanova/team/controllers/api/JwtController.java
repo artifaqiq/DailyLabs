@@ -1,7 +1,7 @@
 package by.casanova.team.controllers.api;
 
-import by.casanova.team.json.jwt.RegisterResponseError;
-import by.casanova.team.json.jwt.RegisterResponseOk;
+import by.casanova.team.json.jwt.AuthResponseError;
+import by.casanova.team.json.jwt.AuthResponseOk;
 import by.casanova.team.json.user.LoginUserModel;
 import by.casanova.team.json.user.RegisteringUserModel;
 import by.casanova.team.models.user.User;
@@ -31,14 +31,12 @@ public class JwtController {
 
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         RegisteringUserModel registeringUser;
-        String token;
         try {
-            registeringUser =
-                    (RegisteringUserModel) gson.fromJson(body, RegisteringUserModel.class);
+            registeringUser = gson.fromJson(body, RegisteringUserModel.class);
         } catch (JsonSyntaxException exception) {
 
             HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
-            RegisterResponseError response = new RegisterResponseError(status,
+            AuthResponseError response = new AuthResponseError(status,
                     ErrorsMessagesConstants.INVALID_JSON);
             return new ResponseEntity<Object>(gson.toJson(response), status);
         }
@@ -49,14 +47,14 @@ public class JwtController {
                 !registeringUser.getPassword().equals(registeringUser.getPassword_confirm())) {
 
             HttpStatus status = HttpStatus.FORBIDDEN;
-            RegisterResponseError response = new RegisterResponseError(status,
+            AuthResponseError response = new AuthResponseError(status,
                     ErrorsMessagesConstants.PASSWORDS_DOESNT_EQUAL);
 
             return new ResponseEntity<Object>(gson.toJson(response), status);
         } else if (userService.exists(registeringUser.getUsername())) {
             HttpStatus status = HttpStatus.CONFLICT;
 
-            RegisterResponseError response = new RegisterResponseError(status,
+            AuthResponseError response = new AuthResponseError(status,
                     ErrorsMessagesConstants.REPEATED_USERNAME);
             return new ResponseEntity<Object>(gson.toJson(response), status);
         } else {
@@ -68,7 +66,7 @@ public class JwtController {
             newUser = userService.save(newUser);
 
             HttpStatus status = HttpStatus.OK;
-            RegisterResponseOk response = new RegisterResponseOk(newUser.getJwtToken(), status);
+            AuthResponseOk response = new AuthResponseOk(newUser.getJwtToken(), status);
 
             return new ResponseEntity<>(gson.toJson(response), HttpStatus.OK);
         }
@@ -77,30 +75,39 @@ public class JwtController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody String body) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         LoginUserModel loginUser;
-        String token = null;
 
         try {
-            loginUser = (LoginUserModel)gson.fromJson(body, LoginUserModel.class);
-
-            if(loginUser.getPassword() == null || loginUser.getUsername() == null) {
-                return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-            }
-
-            User user = userService.verifyUser(loginUser.getUsername(), loginUser.getPassword());
-
-            if(user == null) {
-                return new ResponseEntity<Object>(HttpStatus.UNAUTHORIZED);
-            }
-
-            token = user.getJwtToken();
-
+            loginUser = gson.fromJson(body, LoginUserModel.class);
         } catch (JsonSyntaxException exception) {
-            return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+            HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
+            AuthResponseError response = new AuthResponseError(status,
+                    ErrorsMessagesConstants.INVALID_JSON);
+
+            return new ResponseEntity<Object>(gson.toJson(response), status);
         }
 
-        return new ResponseEntity<Object>(token, HttpStatus.OK);
+        if(loginUser.getPassword() == null || loginUser.getUsername() == null) {
+            HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
+            AuthResponseError response = new AuthResponseError(status,
+                    ErrorsMessagesConstants.INVALID_JSON);
+
+            return new ResponseEntity<Object>(gson.toJson(response), status);
+        }
+
+        User user = userService.verifyUser(loginUser.getUsername(), loginUser.getPassword());
+
+        if(user == null) {
+            HttpStatus status = HttpStatus.UNAUTHORIZED;
+            AuthResponseError response = new AuthResponseError(status,
+                    ErrorsMessagesConstants.WRONG_PASSWORD_OR_USERNAME);
+
+            return new ResponseEntity<Object>(gson.toJson(response), HttpStatus.UNAUTHORIZED);
+        }
+
+        AuthResponseOk response = new AuthResponseOk(user.getJwtToken(), HttpStatus.OK);
+        return new ResponseEntity<Object>(gson.toJson(response), HttpStatus.OK);
     }
 }
 
@@ -108,4 +115,7 @@ interface ErrorsMessagesConstants {
     public static final String PASSWORDS_DOESNT_EQUAL = "Fields must not be empty and 'password' must be equal 'password_confirm'";
     public static final String INVALID_JSON = "Json syntax error";
     public static final String REPEATED_USERNAME = "User with some username already exists";
+    public static final String WRONG_PASSWORD_OR_USERNAME = "Wrong username or password";
+
 }
+

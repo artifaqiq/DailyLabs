@@ -3,12 +3,16 @@
  */
 app.factory('DiaryService', function ($http) {
 
-    // var BASE_URL = "http://dailylabs.herokuapp.com";
-    var BASE_URL = "http://localhost:3000";
-
     var diaryService = {
         get: function() {
-            var promise = $http.get(BASE_URL + "/api/test/diary.json").then(function (response) {
+            var promise = $http({
+                method: 'GET',
+                url: BASE_URL + "/api/diary",
+                headers: {
+                    "Authorization": getCookie('jwt_token')
+                }
+
+            }).then(function (response) {
                 return response.data;
             });
             return promise;
@@ -21,8 +25,11 @@ app.factory('DiaryService', function ($http) {
 
             var request = {
                 method: 'PUT',
-                url: (BASE_URL + '/api/test/diary.json'),
-                data: angular.toJson(correctData)
+                url: (BASE_URL + '/api/diary'),
+                data: angular.toJson(correctData),
+                headers: {
+                    "Authorization": getCookie("jwt_token")
+                }
             }
 
             return $http(request);

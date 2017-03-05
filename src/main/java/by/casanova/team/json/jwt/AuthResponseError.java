@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 /**
  * Created by artifaqiq on 3/5/17.
  */
-public class RegisterResponseError {
+public class AuthResponseError {
 
     @Expose
     private HttpStatus status;
@@ -14,9 +14,9 @@ public class RegisterResponseError {
     @Expose
     private String description;
 
-    public RegisterResponseError() { }
+    public AuthResponseError() { }
 
-    public RegisterResponseError(HttpStatus status, String description) {
+    public AuthResponseError(HttpStatus status, String description) {
         this.status = status;
         this.description = description;
     }
@@ -39,7 +39,7 @@ public class RegisterResponseError {
 
     @Override
     public String toString() {
-        return "RegisterResponseError{" +
+        return "AuthResponseError{" +
                 "status=" + status +
                 ", description='" + description + '\'' +
                 '}';
