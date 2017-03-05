@@ -13,5 +13,5 @@ import java.util.List;
 
 public interface DiaryRepository extends CrudRepository<Diary, Long> {
     @Query("select d from Diary d order by lastModifiedDate desc")
-    List<Diary> findLastModifiedDiary();
+    public List<Diary> findLastModifiedDiary();
 }
