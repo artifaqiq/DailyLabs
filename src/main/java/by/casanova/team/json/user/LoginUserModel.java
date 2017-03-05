@@ -30,4 +30,12 @@ public class LoginUserModel {
         this.username = username;
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "LoginUserModel{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

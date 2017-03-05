@@ -1,22 +1,15 @@
 package by.casanova.team.controllers.api.auth;
 
+import by.casanova.team.json.user.LoginUserModel;
 import by.casanova.team.json.user.RegisteringUserModel;
 import by.casanova.team.models.user.User;
 import by.casanova.team.service.UserService;
-import by.casanova.team.utils.auth.JwtUtils;
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTCreationException;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.UnsupportedEncodingException;
-
 
 /**
  * Created by artifaqiq on 3/4/17.
@@ -33,14 +26,12 @@ public class JwtController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody String body) {
 
-        Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-        String token = null;
+        Gson gson = new Gson();
+        String token;
         try {
             RegisteringUserModel registeringUser =
                     (RegisteringUserModel) gson.fromJson(body, RegisteringUserModel.class);
 
-
-            System.out.println(registeringUser);
 
             //TODO validation
             if (registeringUser.getUsername() == null || registeringUser.getPassword() == null ||
@@ -68,5 +59,33 @@ public class JwtController {
         }
 
         return new ResponseEntity<>(token, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResponseEntity<?> login(@RequestBody String body) {
+        Gson gson = new Gson();
+        LoginUserModel loginUser;
+        String token = null;
+
+        try {
+            loginUser = (LoginUserModel)gson.fromJson(body, LoginUserModel.class);
+
+            if(loginUser.getPassword() == null || loginUser.getUsername() == null) {
+                return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+            }
+
+            User user = userService.verifyUser(loginUser.getUsername(), loginUser.getPassword());
+
+            if(user == null) {
+                return new ResponseEntity<Object>(HttpStatus.UNAUTHORIZED);
+            }
+
+            token = user.getJwtToken();
+
+        } catch (JsonSyntaxException exception) {
+            return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<Object>(token, HttpStatus.OK);
     }
 }

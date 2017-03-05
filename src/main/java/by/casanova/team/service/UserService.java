@@ -10,4 +10,5 @@ public interface UserService {
     public User getById(long id);
     public User save(User user);
     public boolean exists(String username);
+    public User verifyUser(String username, String password);
 }

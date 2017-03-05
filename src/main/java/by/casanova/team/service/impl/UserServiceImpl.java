@@ -34,4 +34,15 @@ public class UserServiceImpl implements UserService{
         return userRepository.countUsersByUsername(username) == 1;
     }
 
+    @Override
+    public User verifyUser(String username, String password) {
+        User user = userRepository.findByUsername(username);
+
+        if(user == null || !user.getPassword().equals(password)) {
+            return null;
+        } else {
+            return user;
+        }
+    }
+
 }
