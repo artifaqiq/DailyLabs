@@ -1,5 +1,5 @@
-﻿var BASE_URL = "http://dailylabs.herokuapp.com";
-// var BASE_URL = "http://localhost:3000";
+﻿// var BASE_URL = "http://dailylabs.herokuapp.com";
+var BASE_URL = "http://localhost:3000";
 
 var app = angular.module('DailyLabsApp', ['ngRoute'])
     .config(function($routeProvider) {

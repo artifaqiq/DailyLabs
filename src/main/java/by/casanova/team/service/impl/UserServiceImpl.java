@@ -3,6 +3,7 @@ package by.casanova.team.service.impl;
 import by.casanova.team.models.labs.Diary;
 import by.casanova.team.models.labs.Subject;
 import by.casanova.team.models.user.User;
+import by.casanova.team.repository.DiaryRepository;
 import by.casanova.team.repository.user.UserRepository;
 import by.casanova.team.service.DiaryService;
 import by.casanova.team.service.UserService;
@@ -17,10 +18,13 @@ import java.util.Random;
  * Created by artifaqiq on 3/5/17.
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    DiaryRepository diaryRepository;
 
     @Autowired
     private DiaryService diaryService;
@@ -55,6 +59,7 @@ public class UserServiceImpl implements UserService{
             return user;
         }
     }
+
 
     @Override
     public User getByToken(String token) {

@@ -28,9 +28,6 @@ public class Diary implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private User user;
-
     @Expose
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "diary")
     private List<Subject> subjects;
@@ -57,14 +54,6 @@ public class Diary implements Serializable {
 
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public long getId() {
@@ -95,7 +84,6 @@ public class Diary implements Serializable {
     public String toString() {
         return "Diary{" +
                 "id=" + id +
-                ", user=" + user +
                 ", subjects=" + subjects +
                 ", createdDate=" + createdDate +
                 ", lastModifiedDate=" + lastModifiedDate +
@@ -105,5 +93,27 @@ public class Diary implements Serializable {
     @Override
     public Diary clone() {
         return new Diary(new ArrayList<>(subjects));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Diary diary = (Diary) o;
+
+        if (id != diary.id) return false;
+        if (subjects != null ? !subjects.equals(diary.subjects) : diary.subjects != null) return false;
+        if (createdDate != null ? !createdDate.equals(diary.createdDate) : diary.createdDate != null) return false;
+        return lastModifiedDate != null ? lastModifiedDate.equals(diary.lastModifiedDate) : diary.lastModifiedDate == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (subjects != null ? subjects.hashCode() : 0);
+        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
+        result = 31 * result + (lastModifiedDate != null ? lastModifiedDate.hashCode() : 0);
+        return result;
     }
 }

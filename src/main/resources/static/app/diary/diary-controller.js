@@ -1,23 +1,20 @@
 app.controller('DiaryController', ['DiaryService', '$interval', '$location', function (DiaryService, $interval, $location) {
     var self = this;
 
-    if(!getCookie('jwt_token')) {
-        $location.path('/register')
-    }
-
     self.diary = DiaryService.get().then(function (data) {
         self.diary = data;
         self.diaryUpToDate = true;
     }, function (response) {
-        $location.path('/login')
     });
 
-    $interval(function () {
-        console.log("INTERVAL");
 
-    }, 1000).then(function () {
-        console.log("THEN");
-    });
+    self.isLogined = function() {
+        if(getCookie("jwt_token")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     self.updateSubject = function(subject, name, description) {
         subject.name = name;
@@ -100,9 +97,17 @@ app.controller('DiaryController', ['DiaryService', '$interval', '$location', fun
         DiaryService.put(self.diary).then(function (response) {
             if(response.status == 200) {
                 self.diaryUpToDate = true;
+
+                self.diary = DiaryService.get().then(function (data) {
+                    self.diary = data;
+                    self.diaryUpToDate = true;
+                }, function (response) {
+                });
             }
 
         })
+
+
     }
 
     self.getJsonDiary = function () {

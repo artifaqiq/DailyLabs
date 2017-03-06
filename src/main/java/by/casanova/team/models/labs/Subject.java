@@ -28,10 +28,10 @@ public class Subject implements Serializable{
     private String description;
 
     @Expose
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "subject")
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "subject")
     private List<Lab> labs;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "DIARY_ID", nullable = false)
     private Diary diary;
 
@@ -87,7 +87,8 @@ public class Subject implements Serializable{
     @Override
     public String toString() {
         return "Subject{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", labs=" + labs +
                 '}';
@@ -98,4 +99,27 @@ public class Subject implements Serializable{
         return new Subject(name, description, new ArrayList<>(labs), diary);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Subject subject = (Subject) o;
+
+        if (id != subject.id) return false;
+        if (name != null ? !name.equals(subject.name) : subject.name != null) return false;
+        if (description != null ? !description.equals(subject.description) : subject.description != null) return false;
+        if (labs != null ? !labs.equals(subject.labs) : subject.labs != null) return false;
+        return diary != null ? diary.equals(subject.diary) : subject.diary == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (labs != null ? labs.hashCode() : 0);
+        result = 31 * result + (diary != null ? diary.hashCode() : 0);
+        return result;
+    }
 }

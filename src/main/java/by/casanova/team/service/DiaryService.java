@@ -10,7 +10,7 @@ import by.casanova.team.models.user.User;
 public interface DiaryService {
     Diary save(Diary diary);
     Diary cascadeSave(Diary diary);
-    void delete(long id);
+    void delete(Diary diary);
     Diary update(Diary diary);
     Iterable<Diary> getAll();
     Diary getById(long id);

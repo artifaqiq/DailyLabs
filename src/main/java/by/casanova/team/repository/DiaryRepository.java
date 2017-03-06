@@ -13,9 +13,10 @@ import java.util.List;
 /**
  * Created by artifaqiq on 2/12/17.
  */
-
+@Transactional
 public interface DiaryRepository extends CrudRepository<Diary, Long> {
+    @Transactional
     @Query("select d from Diary d order by lastModifiedDate desc")
-    public List<Diary> findLastModifiedDiary();
+    List<Diary> findLastModifiedDiary();
 
 }

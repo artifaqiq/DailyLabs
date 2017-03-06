@@ -36,7 +36,6 @@ public class DiaryServiceImpl implements DiaryService{
 
     @Override
     public Diary cascadeSave(Diary diary) {
-
         Diary savedDiary = diaryRepository.save(diary);
 
         List<Subject> savedSubjects = new ArrayList<>();
@@ -57,13 +56,20 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public void delete(long id) {
-        diaryRepository.delete(id);
+    public void delete(Diary diary) {
+
+        for(Subject subject: diary.getSubjects()) {
+            for(Lab lab: subject.getLabs()) {
+                labRepository.delete(lab);
+            }
+            subjectRepository.delete(subject);
+        }
+        diaryRepository.delete(diary);
     }
 
     @Override
     public Diary update(Diary diary) {
-        return diaryRepository.save(diary);
+        return this.cascadeSave(diary);
     }
 
     @Override

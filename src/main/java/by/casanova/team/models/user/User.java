@@ -18,7 +18,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
-public class User implements Serializable{
+public class User implements Serializable {
 
     @Expose
     @Id
@@ -59,7 +59,8 @@ public class User implements Serializable{
     @Column(nullable = false, unique = true)
     private String jwtToken;
 
-    public User() {}
+    public User() {
+    }
 
     public ZonedDateTime getCreatedDate() {
         return createdDate;
@@ -133,9 +134,43 @@ public class User implements Serializable{
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
                 ", roles=" + roles +
+                ", diary=" + diary +
                 ", createdDate=" + createdDate +
                 ", lastModifiedDate=" + lastModifiedDate +
                 ", jwtToken='" + jwtToken + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        if (enabled != user.enabled) return false;
+        if (username != null ? !username.equals(user.username) : user.username != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (roles != null ? !roles.equals(user.roles) : user.roles != null) return false;
+        if (diary != null ? !diary.equals(user.diary) : user.diary != null) return false;
+        if (createdDate != null ? !createdDate.equals(user.createdDate) : user.createdDate != null) return false;
+        if (lastModifiedDate != null ? !lastModifiedDate.equals(user.lastModifiedDate) : user.lastModifiedDate != null)
+            return false;
+        return jwtToken != null ? jwtToken.equals(user.jwtToken) : user.jwtToken == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (enabled ? 1 : 0);
+        result = 31 * result + (roles != null ? roles.hashCode() : 0);
+        result = 31 * result + (diary != null ? diary.hashCode() : 0);
+        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
+        result = 31 * result + (lastModifiedDate != null ? lastModifiedDate.hashCode() : 0);
+        result = 31 * result + (jwtToken != null ? jwtToken.hashCode() : 0);
+        return result;
     }
 }

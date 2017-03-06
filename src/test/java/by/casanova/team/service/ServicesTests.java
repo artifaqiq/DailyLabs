@@ -51,7 +51,7 @@ public class ServicesTests {
         newSubjects.add(newSubject);
         byIdDiary.setSubjects(newSubjects);
 
-        diaryService.delete(byIdDiary.getId());
+        diaryService.delete(byIdDiary);
 
         System.out.println("All: " + diaryService.getAll());
 

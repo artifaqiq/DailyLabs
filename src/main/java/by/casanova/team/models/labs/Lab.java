@@ -28,7 +28,7 @@ public class Lab implements Serializable{
     @Column
     private String description;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "SUBJECT_ID")
     private Subject subject;
 
@@ -95,5 +95,29 @@ public class Lab implements Serializable{
 
     public void setSubject(Subject subject) {
         this.subject = subject;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Lab lab = (Lab) o;
+
+        if (id != lab.id) return false;
+        if (passed != lab.passed) return false;
+        if (name != null ? !name.equals(lab.name) : lab.name != null) return false;
+        if (description != null ? !description.equals(lab.description) : lab.description != null) return false;
+        return subject != null ? subject.equals(lab.subject) : lab.subject == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (passed ? 1 : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (subject != null ? subject.hashCode() : 0);
+        return result;
     }
 }

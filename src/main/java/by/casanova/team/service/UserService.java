@@ -7,10 +7,10 @@ import by.casanova.team.models.user.User;
  */
 public interface UserService {
 
-    public User getById(long id);
-    public User save(User user);
-    public boolean exists(String username);
-    public User verifyUser(String username, String password);
-    public User getByToken(String token);
-    public User update(User user);
+    User getById(long id);
+    User save(User user);
+    boolean exists(String username);
+    User verifyUser(String username, String password);
+    User getByToken(String token);
+    User update(User user);
 }
