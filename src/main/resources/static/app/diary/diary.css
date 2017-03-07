@@ -1,0 +1,55 @@
+.table tbody tr  {
+    background-color: seashell !important;
+}
+
+tr, td, th
+{
+    border: 0;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #faf2cc !important;
+}
+
+.progress {
+    width: 100%;
+    background-color: green;
+}
+
+.progress-bar {
+    height: 30px;
+    background-color: green;
+}
+
+.lab-passed-true {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.lab-passed-false {
+    background-color: red; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.glyphicon {
+    background-color: darkgrey; /* Green */
+    border: none;
+    color: white;
+    padding: 7.5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

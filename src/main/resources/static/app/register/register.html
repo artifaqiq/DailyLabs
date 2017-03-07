@@ -1,25 +1,32 @@
 
-<div class="col-md-3">
-    <form>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input ng-model="username" id="email" type="text" class="form-control" name="email" placeholder="Username">
-        </div>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input ng-model="password" id="password" type="password" class="form-control" name="password" placeholder="Password">
-        </div>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input ng-model="password_confirm" id="password_confirm" type="password" class="form-control" name="password_confirm"
-                   placeholder="Confirm password">
-        </div>
-        <div class="form-control">
-            {{regCtrl.message}}
-        </div>
-        <button ng-click="regCtrl.register(username, password, password_confirm)" type="submit" class="btn btn-default">Submit</button>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="Absolute-Center is-Responsive">
+            <div id="logo-container"></div>
+            <div class="col-sm-12 col-md-10 col-md-offset-1">
+                <form action="" id="loginForm">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input ng-model="username" class="form-control" type="text" name='username' placeholder="Username"/>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input ng-model="password" class="form-control" type="password" name='password' placeholder="Password"/>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input ng-model="password_confirm" class="form-control" type="password" name='password' placeholder="Password confirmation"/>
+                    </div>
+                    <div class="form-group">
+                        <button  ng-click="regCtrl.register(username, password, password_confirm)" type="button" class="btn btn-def btn-block">Sign up
+                        </button>
+                    </div>
 
-    <a href="#/login">login</a>
-
+                    <a href="#/login">Sign in</a>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+

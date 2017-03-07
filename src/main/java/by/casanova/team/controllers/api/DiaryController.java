@@ -38,8 +38,6 @@ public class DiaryController {
         String token = authorization;
         User user = userService.getByToken(token);
 
-        System.out.println(user.getDiary());
-
         if (user == null) {
             return new ResponseEntity<Object>(HttpStatus.UNAUTHORIZED);
         } else {
@@ -67,13 +65,11 @@ public class DiaryController {
             Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             diary = gson.fromJson(body, Diary.class);
 
-            System.err.println(diary);
-
             diary.setLastModifiedDate(ZonedDateTime.now(ZoneOffset.UTC));
 
             diary = diaryService.cascadeSave(diary);
             user.setDiary(diary);
-            user = userService.update(user);
+            userService.update(user);
 
             return new ResponseEntity<Object>(HttpStatus.OK);
         }

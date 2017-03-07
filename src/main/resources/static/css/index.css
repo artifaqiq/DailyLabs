@@ -1,26 +1,17 @@
-.lab-passed-true {
-    //TODO;
-    color: green;
+body {
+    background-image:url('/image/background.jpg');
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.lab-passed-false {
-    //TODO;
-    color: red;
-}
-.progress-bar{
-
-}
-body{
-    background: #FFF78A;
-
-}
 .subName{
   font-family: Broadway;
     font-weight: bold;
     font-size: 20px;
 
 }
-.table{
+.table {
 
 }
 .sub_size{

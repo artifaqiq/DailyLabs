@@ -1,20 +1,25 @@
 
-<div class="col-md-3">
-    <form>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input ng-model="username" id="email" type="text" class="form-control" name="email" placeholder="Username">
-        </div>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input ng-model="password" id="password" type="password" class="form-control" name="password" placeholder="Password">
-        </div>
-        <div class="form-control">
-            {{loginCtrl.message}}
-        </div>
-        <button ng-click="loginCtrl.login(username, password)" type="submit" class="btn btn-default">Submit</button>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="Absolute-Center is-Responsive">
+            <div id="logo-container"></div>
+            <div class="col-sm-12 col-md-10 col-md-offset-1">
+                <form action="" id="loginForm">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input ng-model="username" class="form-control" type="text" name='username' placeholder="username"/>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input ng-model="password" class="form-control" type="password" name='password' placeholder="password"/>
+                    </div>
+                    <div class="form-group">
+                        <button  ng-click="loginCtrl.login(username, password)" type="button" class="btn btn-def btn-block">Sign in</button>
+                    </div>
 
-    <a href="#/register">Register</a>
-
+                    <a href="#/register">Sign up</a>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

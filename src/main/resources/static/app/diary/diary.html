@@ -1,6 +1,9 @@
-<div ng-if="diaryCtrl.isLogined()" class="container" style="margin-top: 5%">
-    <div class="panel">
-        <div class="container">
+<div class="container" style="margin-top: 5%">
+    <div>
+        <div>
+            <button ng-click="diaryCtrl.logOut()" class="btn btn-block btn-default">Log out</button>
+        </div>
+        <div>
             <table class="table table-hover">
                 <tbody>
                 <tr ng-repeat="subject in diaryCtrl.diary.subjects">
@@ -41,10 +44,8 @@
                     </td>
 
                     <td>
-                        <div ng-repeat = "lab in subject.labs" class="btn-group" >
-
-
-
+                        <div>
+                        <div ng-repeat = "lab in subject.labs" class="btn-group" role="group" aria-label="..." >
                             <div class="dropdown">
                                 <button class="glyphicon glyphicon-pencil" data-toggle="dropdown"></button>
 
@@ -72,19 +73,15 @@
                             <div class="dropdown">
                                 <button class="glyphicon glyphicon glyphicon-remove-circle" data-toggle="dropdown"
                                         ng-click="diaryCtrl.deleteLab(subject, lab)"></button>
-
                             </div>
 
-                            <button ng-click="diaryCtrl.switchPassed(lab)" type = "button" class="lab-passed-{{lab.passed}} labName"
-                                    title="{{lab.description}}">
-                                {{lab.name}}
-                            </button>
-                            <div>
-
-                            </div>
+                            <a ng-click="diaryCtrl.switchPassed(lab)" role="group">
+                                <button class="lab-passed-{{lab.passed}}">{{lab.name}}</button>
+                            </a>
                         </div>
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown">Add new lab</button>
+
+                        <div class="dropdown" role="group">
+                            <button class="btn btn-success dropdown-toggle btn-xs" type="button" data-toggle="dropdown" role="group">Add new lab</button>
                             <form class="dropdown-menu">
                                 <div class="input-group"  style="margin: 3%">
                                     <input ng-model="newLabName" class="form-control"/>
@@ -95,14 +92,16 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="progress">
+                            <div style="width:{{ diaryCtrl.getPercentPasssedLabs(subject.labs) }}%" class="progress-bar" role="progressbar" aria-valuenow="30"
+                                 aria-valuemin="0" aria-valuemax="100" >
+                            </div>
+                            {{diaryCtrl.getPercentPasssedLabs(subject.labs)}}
+                        </div>
+                        </div>
                     </td>
                     <td>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="30"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:{{diaryCtrl.getPercentPasssedLabs(subject.labs)}}%">
-                                {{diaryCtrl.getPercentPasssedLabs(subject.labs)}}
-                            </div>
-                        </div>
+
                     </td>
                 </tr>
 
@@ -134,13 +133,3 @@
     </div>
 </div>
 
-<div ng-if="!diaryCtrl.isLogined">
-
-</div>
-
-<div style="margin: 7%">
-    <h3><strong>Model:</strong></h3>
-    <div class="center-block col-md-6">
-        {{diaryCtrl.getJsonDiary()}}
-    </div>
-</div>
