@@ -13,6 +13,7 @@ app.controller('RegisterController', ['RegisterService', '$location', function (
             RegisterService.register(username, password, password_confirm)
                 .then(function (response) {
                     setCookie("jwt_token", response.data.token, {"path": "/"})
+                    setCookie("username", username, {"path": "/"})
                     $location.path('/')
 
                 }, function (response) {
