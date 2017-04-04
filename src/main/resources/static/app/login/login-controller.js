@@ -15,8 +15,13 @@ app.controller('LoginController', ['LoginService', '$location', function (LoginS
                 $location.path('/')
 
             }, function (response) {
-                self.message = response.data.description
+                if(response.status == 401) {
+                    self.message = "Incorrect login or password";
+                }
             })
+
+            document.getElementById("username").innerHTML = "";
+            document.getElementById("password").innerHTML = "";
 
     }
 

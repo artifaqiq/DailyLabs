@@ -16,7 +16,9 @@ app.controller('RegisterController', ['RegisterService', '$location', function (
                     $location.path('/')
 
                 }, function (response) {
-                    self.message = response.data.description
+                    if(response.status == "409") {
+                        self.message = "User with some username already exists";
+                    }
                 })
 
         } else {

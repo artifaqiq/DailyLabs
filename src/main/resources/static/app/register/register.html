@@ -7,21 +7,31 @@
                 <form action="" id="loginForm">
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input ng-model="username" class="form-control" type="text" name='username' placeholder="Username"/>
+                        <input ng-model="username" class="form-control" type="text" name='username' placeholder="Username"
+                               ng-keypress="($event.which === 13)?regCtrl.register(username, password, password_confirm):0;
+                                            ($event.which === 13)?username=password=password_confirm='':0";
+                        />
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input ng-model="password" class="form-control" type="password" name='password' placeholder="Password"/>
+                        <input ng-model="password" class="form-control" type="password" name='password' placeholder="Password"
+                               ng-keypress="($event.which === 13)?regCtrl.register(username, password, password_confirm):0;
+                                            ($event.which === 13)?username=password=password_confirm='':0";
+                        />
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input ng-model="password_confirm" class="form-control" type="password" name='password' placeholder="Password confirmation"/>
+                        <input ng-model="password_confirm" class="form-control" type="password" name='password' placeholder="Password confirmation"
+                               ng-keypress="($event.which === 13)?regCtrl.register(username, password, password_confirm):0;
+                                            ($event.which === 13)?username=password=password_confirm='':0";
+                        />
                     </div>
                     <div class="form-group">
                         <button  ng-click="regCtrl.register(username, password, password_confirm)" type="button" class="btn btn-def btn-block">Sign up
                         </button>
                     </div>
 
+                    <p style="color: red">{{regCtrl.message}}</p>
                     <a href="#/login">Sign in</a>
                 </form>
             </div>
