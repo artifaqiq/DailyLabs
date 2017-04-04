@@ -12,8 +12,8 @@ app.controller('LoginController', ['LoginService', '$location', function (LoginS
         LoginService.login(username, password)
             .then(function (response) {
                 setCookie("jwt_token", response.data.token, {"path": "/"})
+                setCookie("username", username, {"path": "/"})
                 $location.path('/')
-
             }, function (response) {
                 if(response.status == 401) {
                     self.message = "Incorrect login or password";

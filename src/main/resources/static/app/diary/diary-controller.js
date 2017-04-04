@@ -1,6 +1,6 @@
 app.controller('DiaryController', ['DiaryService', '$interval', '$location', function (DiaryService, $interval, $location) {
     var self = this;
-
+    var username = getCookie("username")
     self.diary = DiaryService.get()
         .then(function (data) {
         self.diary = data;

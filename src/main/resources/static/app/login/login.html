@@ -22,7 +22,7 @@
                         />
                     </div>
                     <div class="form-group">
-                        <button  ng-click="loginCtrl.login(username, password)" type="button" class="btn btn-def btn-block">Sign in</button>
+                        <button  ng-click="loginCtrl.login(username, password); username=password=password_confirm=''" type="button" class="btn btn-def btn-block">Sign in</button>
                     </div>
                     <p style="color:red"> {{loginCtrl.message}}</p>
                     <a href="#/register">Sign up</a>
