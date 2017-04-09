@@ -3,7 +3,6 @@ package by.casanova.team.service.impl;
 import by.casanova.team.models.labs.Diary;
 import by.casanova.team.models.labs.Lab;
 import by.casanova.team.models.labs.Subject;
-import by.casanova.team.models.user.User;
 import by.casanova.team.repository.DiaryRepository;
 import by.casanova.team.repository.LabRepository;
 import by.casanova.team.repository.SubjectRepository;

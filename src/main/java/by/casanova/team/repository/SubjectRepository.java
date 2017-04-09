@@ -1,8 +1,6 @@
 package by.casanova.team.repository;
 
-import by.casanova.team.models.labs.Diary;
 import by.casanova.team.models.labs.Subject;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;

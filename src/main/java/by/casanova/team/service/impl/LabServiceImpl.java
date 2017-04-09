@@ -6,8 +6,6 @@ import by.casanova.team.service.LabService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * Created by artifaqiq on 2/12/17.
  */
