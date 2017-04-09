@@ -7,13 +7,11 @@ import by.casanova.team.service.UserService;
 import by.casanova.team.utils.ZonedDateTimeSerializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.soap.SOAPBinding;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
@@ -26,11 +24,14 @@ import java.time.ZonedDateTime;
 @RequestMapping("/api/")
 public class DiaryController {
 
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private DiaryService diaryService;
+
+    public DiaryController(@Autowired UserService userService, @Autowired DiaryService diaryService) {
+        this.userService = userService;
+        this.diaryService = diaryService;
+    }
 
     @RequestMapping("/diary")
     public ResponseEntity<?> getDiaryJson(@RequestHeader(value = "Authorization") String authorization) {
@@ -38,41 +39,33 @@ public class DiaryController {
         String token = authorization;
         User user = userService.getByToken(token);
 
-        if (user == null) {
-            return new ResponseEntity<Object>(HttpStatus.UNAUTHORIZED);
-        } else {
-            GsonBuilder gsonBuilder = new GsonBuilder().excludeFieldsWithoutExposeAnnotation();
-            gsonBuilder.registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeSerializer());
+        GsonBuilder gsonBuilder = new GsonBuilder().excludeFieldsWithoutExposeAnnotation();
+        gsonBuilder.registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeSerializer());
 
-            String json = gsonBuilder.create().toJson(user.getDiary(), Diary.class);
-            return new ResponseEntity<Object>(json, HttpStatus.OK);
-        }
+        String json = gsonBuilder.create().toJson(user.getDiary(), Diary.class);
+        return new ResponseEntity<>(json, HttpStatus.OK);
 
     }
 
     @RequestMapping(value = "/diary", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateDiary(@RequestBody String body,
-                                         @RequestHeader(value = "Authorization") String authorization) {
+    public ResponseEntity<?> updateDiary(
+            @RequestHeader(value = "Authorization") String authorization,
+            @RequestBody String body) {
 
-        String token = authorization;
-        User user = userService.getByToken(token);
+        Diary diary;
 
-        if (user == null) {
-            return new ResponseEntity<Object>(HttpStatus.UNAUTHORIZED);
-        } else {
-            Diary diary, oldDiary = user.getDiary();
+        User user = userService.getByToken(authorization);
 
-            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-            diary = gson.fromJson(body, Diary.class);
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+        diary = gson.fromJson(body, Diary.class);
 
-            diary.setLastModifiedDate(ZonedDateTime.now(ZoneOffset.UTC));
+        diary.setLastModifiedDate(ZonedDateTime.now(ZoneOffset.UTC));
 
-            diary = diaryService.cascadeSave(diary);
-            user.setDiary(diary);
-            userService.update(user);
+        diary = diaryService.cascadeSave(diary);
+        user.setDiary(diary);
+        userService.update(user);
 
-            return new ResponseEntity<Object>(HttpStatus.OK);
-        }
+        return new ResponseEntity<>(HttpStatus.OK);
 
     }
 
