@@ -16,8 +16,8 @@ Team name is "Casanova-team"
 ### REST API
 [Swagger](https://app.swaggerhub.com/api/artifaqiq/DailyLabs/1.0.1) - API specification
 
-### Scrum
-[over.io](https://overv.io/artifaqiq/DailyLabs) - tool for visualize
+### Documents
+[GoogleDrive](https://drive.google.com/open?id=0B2nurjmyzhQjSmF3X3lyWW96cDQ)
 
 ### Clients applications
 [Client for iOS](https://github.com/mrkulik/DailyLabs-ios)
