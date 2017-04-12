@@ -25,10 +25,10 @@ app.controller('DiaryController', ['DiaryService', '$interval', '$location', fun
             var newSubject = {};
             newSubject.name = newSubjectName;
             newSubject.description = "";
-            newSubject.labs = [];
+            newSubject.labs = []
 
             self.diary.subjects.push(newSubject);
-            self.diaryUpToDate = false;
+            self.diaryUpToDate = true;
         } else {
             //TODO Show notice
         }

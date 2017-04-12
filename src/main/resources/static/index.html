@@ -1,31 +1,170 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html ng-app="DailyLabsApp">
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<title>DailyLabs</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <title>DailyLabs</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<script src="js/cookie-helper.js"></script>
-	<script src="app/app.js"></script>
-	<script src="app/diary/diary-controller.js"></script>
-	<script src="app/diary/diary-service.js"></script>
-	<script src="app/register/register-service.js"></script>
-	<script src="app/register/register-controller.js"></script>
-	<script src="app/login/login-service.js"></script>
-	<script src="app/login/login-controller.js"></script>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <script src="js/modernizr.js"></script>
+    <link rel="icon" type="image/png" href="favicon.png">
 
-	<link rel="stylesheet" href="css/index.css">
-	<link rel="stylesheet" href="app/login/login.css">
-	<link rel="stylesheet" href="app/diary/diary.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="js/cookie-helper.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/diary/diary-controller.js"></script>
+    <script src="app/diary/diary-service.js"></script>
+    <script src="app/register/register-service.js"></script>
+    <script src="app/register/register-controller.js"></script>
+    <script src="app/login/login-service.js"></script>
+    <script src="app/login/login-controller.js"></script>
+
+    <link rel="stylesheet" href="app/login/login.css">
+    <link rel="stylesheet" href="app/diary/diary.css">
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <script src="js/modernizr.js"></script>
+    <link rel="icon" type="image/png" href="favicon.png">
+
 
 </head>
-<body>
 
-<div ng-view>Loading...</div>
+<body id="top">
+
+<!-- header
+================================================== -->
+<header>
+
+    <div class="row">
+
+        <!--<div class="logo">
+          <a href="index.html">DailyLabs</a>
+       </div>-->
+
+        <nav id="main-nav-wrap">
+            <ul class="main-navigation">
+                <li class="current"><a class="smoothscroll"  href="#intro" title="">Home</a></li>
+                <li><a class="smoothscroll"  href="#features" title="">App</a></li>
+                <li class="highlight with-sep"><a href="login.html" target="_blank" title="">Sign in</a></li>
+                <li class="highlight with-sep"><a href="register.html" target="_blank" title="">Sign up</a></li>
+            </ul>
+        </nav>
+
+        <a class="menu-toggle" href="#"><span>Menu</span></a>
+
+    </div>
+
+</header> <!-- /header -->
+
+<!-- intro section
+================================================== -->
+<section id="intro">
+
+    <div class="shadow-overlay"></div>
+
+    <div class="intro-content">
+        <div class="row">
+
+            <div class="col-twelve">
+
+                <h5>Hello welcome to DailyLabs</h5>
+                <h1>Our awesome app will make your life a lot easier</h1>
+                <a class="button stroke " href="register.html" target="_blank" title="">Sing Up</a>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal Popup
+    ========================================================= -->
+
+</section> <!-- /intro -->
+
+
+<section id="features">
+
+    <div class="row section-intro">
+        <div class="col-twelve with-bottom-line">
+            <div class="row cta-content">
+
+                <div class="col-twelve">
+
+                    <h1 class="h01">Get started now</h1>
+
+                    <p class="lead">Download the app now. Available on the:</p>
+
+                    <ul class="stores">
+                        <li class="app-store">
+                            <a href="#" class="button round large" title="">
+                                <i class="icon ion-social-apple"></i>App Store
+                            </a>
+                        </li>
+                        <li class="play-store">
+                            <a href="#" class="button round large" title="">
+                                <i class="icon ion-social-android"></i>Play Store</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div> <!-- /cta-content -->
+
+        </div>
+    </div>
+
+</section>
+
+<!-- footer
+================================================== -->
+<footer>
+
+    <div class="footer-bottom">
+
+        <div class="row">
+
+            <div class="col-twelve">
+                <div class="copyright">
+                    <span>© Copyright Casanova-team 2017.</span>
+                </div>
+
+                <div id="go-top" style="display: block;">
+                    <a class="smoothscroll" title="Back to Top" href="#top"><i class="icon ion-android-arrow-up"></i></a>
+                </div>
+            </div>
+
+        </div> <!-- /footer-bottom -->
+
+    </div>
+
+</footer>
+
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<!-- Java Script
+================================================== -->
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
 </body>
+
 </html>
