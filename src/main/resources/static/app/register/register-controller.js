@@ -14,7 +14,7 @@ app.controller('RegisterController', ['RegisterService', '$location', function (
                 .then(function (response) {
                     setCookie("jwt_token", response.data.token, {"path": "/"})
                     setCookie("username", username, {"path": "/"})
-                    $location.path('/')
+                    window.location.href = ("/diary.html");
 
                 }, function (response) {
                     if(response.status == "409") {

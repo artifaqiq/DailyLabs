@@ -5,29 +5,40 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <script src="app/login/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <script src="js/cookie-helper.js"></script>
+    <script src="app/app.js"></script>
     <script src="app/login/login-service.js"></script>
     <script src="app/login/login-controller.js"></script>
     <link rel="stylesheet" href="app/login/login.css">
 
-
-    <link rel="icon" type="image/png" href="app/login/favicon.png">
+    <link rel="icon" type="image/png" href="./favicon.png">
 </head>
 <body id="log">
-<div class="container" >
+<div ng-app="DailyLabsApp" ng-controller="LoginController as loginCtrl" class="container">
     <div class="row">
         <div class="Absolute-Center is-Responsive">
             <div id="logo-container"></div>
-            <h1 class="h01">Sign in to DailyLabs</h1> <hr>
+            <h1 class="h01">Sign in to DailyLabs</h1>
+            <hr>
             <div class="col-sm-12 col-md-10 col-md-offset-1">
 
                 <form action="" id="loginForm">
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input ng-model="username" class="form-control" type="text" name='username' placeholder="username"
+                        <input ng-model="username" class="form-control" type="text" name='username'
+                               placeholder="username"
                                ng-keypress="($event.which === 13)?loginCtrl.login(username, password):0;
                                             ($event.which === 13)?username=password='':0;"
                                id="username"
@@ -35,19 +46,22 @@
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input ng-model="password" class="form-control" type="password" name='password' placeholder="password"
+                        <input ng-model="password" class="form-control" type="password" name='password'
+                               placeholder="password"
                                ng-keypress="($event.which === 13)?loginCtrl.login(username, password):0;
-                                            ($event.which === 13)?username=password='':0";
+                                            ($event.which === 13)?username=password='':0" ;
                                id="password"
                         />
                     </div>
                     <div class="form-group">
-                        <button  ng-click="loginCtrl.login(username, password); username=password=password_confirm=''" type="button" class="btn btn-def btn-block">Sign in</button>
+                        <button ng-click="loginCtrl.login(username, password); username=password=password_confirm=''"
+                                type="button" class="btn btn-def btn-block">Sign in
+                        </button>
                     </div>
 
                     <p style="color:red"> {{loginCtrl.message}}</p>
 
-                    <!--<a href="#/register">Sign up</a>-->
+                    <a href="register.html">Sign up</a>
 
                 </form>
             </div>

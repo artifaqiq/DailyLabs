@@ -11,14 +11,20 @@
     <link rel="stylesheet" href="app/register/register.css">
     <link rel="icon" type="image/png" href="app/register/favicon.png">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <script src="app/register/app.js"></script>
+    <script src="js/cookie-helper.js"></script>
+    <script src="app/app.js"></script>
     <script src="app/register/register-controller.js"></script>
     <script src="app/register/register-service.js"></script>
+
 </head>
 <body id = "reg">
 
-<div class="container">
+<div ng-app="DailyLabsApp" ng-controller="RegisterController as regCtrl" class="container">
     <div class="row">
         <div class="Absolute-Center is-Responsive">
             <div id="logo-container"></div>
@@ -52,7 +58,7 @@
                     </div>
 
                     <p style="color: red">{{regCtrl.message}}</p>
-                    <!--<a href="#/login">Sign in</a>-->
+                    <a href="login.html">Sign in</a>
                 </form>
             </div>
         </div>
