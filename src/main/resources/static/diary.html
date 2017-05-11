@@ -48,8 +48,8 @@
                     <td class="sub_size">
                         <panel panel-default>
                             <div class="panel-body">
-                                <div class="subName">{{subject.name}}</div>
-                                <div class="dropdown">
+                                <div class = "change">
+                                <span class="dropdown">
                                     <button class="glyphicon glyphicon-pencil" data-toggle="dropdown"></button>
 
                                     <div class="dropdown-menu">
@@ -73,22 +73,27 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </span>
 
-                                <div class="dropdown">
+                                <span class="dropdown">
 
                                     <button class="glyphicon glyphicon-remove-circle"
                                             ng-click="diaryCtrl.deleteSubject(subject)"
                                             data-toggle="dropdown"></button>
-                                </div>
-                            </div>
+                                </span>
+                                    
+
+                                <div class="subName">{{subject.name}}</div>
+                                    </div>
+
                         </panel>
                     </td>
 
                     <td>
                         <div>
                             <div ng-repeat="lab in subject.labs" class="btn-group" role="group" aria-label="...">
-                                <div class="dropdown">
+                                <div class = "change">
+                                <span class="dropdown">
                                     <button class="glyphicon glyphicon-pencil" data-toggle="dropdown"></button>
 
                                     <div class="dropdown-menu">
@@ -114,16 +119,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </span>
 
-                                <div class="dropdown">
+                                <span class="dropdown">
                                     <button class="glyphicon glyphicon glyphicon-remove-circle" data-toggle="dropdown"
                                             ng-click="diaryCtrl.deleteLab(subject, lab)"></button>
+                                </span>
                                 </div>
-
-                                <a ng-click="diaryCtrl.switchPassed(lab)" role="group">
+                                <div>
+                                    <a ng-click="diaryCtrl.switchPassed(lab)" role="group">
                                     <button class="lab-passed-{{lab.passed}}">{{lab.name}}</button>
                                 </a>
+                                </div>
+
                             </div>
 
                             <div class="dropdown" role="group">
