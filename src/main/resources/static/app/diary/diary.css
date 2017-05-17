@@ -57,7 +57,6 @@ body {
     white-space: nowrap;
     background-clip: border-box;
     border: 3px solid  #d8d8d8;
-
     border-radius: 1000px;
     transition: all 0.3s ease-in-out;
 }
@@ -189,7 +188,7 @@ tr, td, th
 }
 
 .lab-passed-false {
-    background-color: #ff7b29; /* Green */
+    background-color: #ff7b29;
     border-radius: 1000px;
     border: none;
     color: white;
@@ -219,3 +218,44 @@ tr, td, th
     text-align: center;
 }
 
+.btn-success{
+
+}
+
+.form-control{
+    background: #d8d8d8;
+}
+.dropdown-menu{
+    background-color: #606060;
+    color: white;
+}
+
+.success{
+    background-color: #ff7b29;
+    border-radius: 1000px;
+    border: none;
+    color: white;
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.default{
+    background-color: #049485;
+    border-radius: 1000px;
+    border: none;
+    color: white;
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

@@ -52,8 +52,8 @@
                                 <span class="dropdown">
                                     <button class="glyphicon glyphicon-pencil" data-toggle="dropdown"></button>
 
-                                    <div class="dropdown-menu">
-                                        <div style="margin: 5%">
+                                    <div class="dropdown-menu change-subject">
+                                        <div class = "" style="margin: 5%">
                                             <div ng-init="name=subject.name" class="form-group">
                                                 <label for="name">Name:</label>
                                                 <input ng-model="name" type="text" class="form-control" id="name"
@@ -66,9 +66,9 @@
                                             </div>
                                             <div class="form-group">
                                                 <button ng-click="diaryCtrl.updateSubject(subject, name, description)"
-                                                        class="btn btn-success" type="submit">Save
+                                                        class="success" type="submit">Save
                                                 </button>
-                                                <button ng-click="description=name=''" class="btn btn-default">Cancel
+                                                <button ng-click="description=name=''" class="default">Cancel
                                                 </button>
                                             </div>
                                         </div>
